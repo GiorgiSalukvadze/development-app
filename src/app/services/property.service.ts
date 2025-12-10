@@ -6,73 +6,209 @@ import { Building, Floor, Unit, Project } from '../models/property.models';
   providedIn: 'root'
 })
 export class PropertyService {
-  private realFloorPolygons = [
-    {
-      id: "floor-1",
-      name: "Floor 1",
-      svgPoints: "38.5,262 93.5,149 591.5,350 590.5,377 107.5,197 37.5,273 38.5,282",
-      status: "available" as const,
-      floorNumber: 1,
-      floorPlanImage: "assets/floor-a.jpg",
-      // ViewBox must match ORIGINAL image dimensions (1227x836)
-      // svgPoints coordinates must also be scaled to these dimensions
-      floorPlanViewBox: "0 0 1227 836",
-      unitPolygons: [
-        {
-          id: "unit-1",
-          name: "Unit 101",
-          // Coordinates scaled from canvas (1174x800) to image (1227x836): multiply by ~1.045
-          svgPoints: "18,256 126,256 127,389 145,390 146,408 164,408 163,428 123,423 19,416 22,418",
-          status: "available" as const,
-          area: 100,
-          bedrooms: 2,
-          bathrooms: 1,
-          price: 150000
-        },
-        {
-          id: "unit-2",
-          name: "Unit 102",
-          svgPoints: "229,402 233,257 131,258 130,386 146,391 147,403",
-          status: "available" as const,
-          area: 100,
-          bedrooms: 2,
-          bathrooms: 1,
-          price: 160000
-        }
-      ]
-    },
-    {
-      id: "floor-2", 
-      name: "Floor 2",
-      svgPoints: "109.5,198 591.5,377.25 591.5,398.25 110.5,232.25",
-      status: "available" as const,
-      floorNumber: 2,
-      floorPlanImage: "assets/floor-a.jpg",
-      floorPlanViewBox: "0 0 1227 836",
-      unitPolygons: [
-        {
-          id: "unit-1",
-          name: "Unit 201",
-          svgPoints: "18,256 126,256 127,389 145,390 146,408 164,408 163,428 123,423 19,416 22,418",
-          status: "sold" as const,
-          area: 100,
-          bedrooms: 2,
-          bathrooms: 1,
-          price: 155000
-        },
-        {
-          id: "unit-2",
-          name: "Unit 202",
-          svgPoints: "229,402 233,257 131,258 130,386 146,391 147,403",
-          status: "available" as const,
-          area: 100,
-          bedrooms: 2,
-          bathrooms: 1,
-          price: 165000
-        }
-      ]
-    }
-  ];
+  // Your converted JSON data matching the TypeScript structure
+private realFloorPolygons = [
+  {
+    id: "floor-1",
+    name: "Floor 1",
+    svgPoints: "83,717 601,697 598,675 83,678",
+    status: "available" as const,
+    floorNumber: 1,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-2",
+    name: "Floor 2",
+    svgPoints: "85,679 601,676 601,652 89,642",
+    status: "available" as const,
+    floorNumber: 2,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-3",
+    name: "Floor 3",
+    svgPoints: "86,643 600,654 599,632 87,607",
+    status: "available" as const,
+    floorNumber: 3,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-4",
+    name: "Floor 4",
+    svgPoints: "87,606 600,632 598,607 87,571",
+    status: "available" as const,
+    floorNumber: 4,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-5",
+    name: "Floor 5",
+    svgPoints: "89,571 597,610 595,586 89,536",
+    status: "available" as const,
+    floorNumber: 5,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-6",
+    name: "Floor 6",
+    svgPoints: "89,536 597,587 594,565 90,501",
+    status: "available" as const,
+    floorNumber: 6,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-7",
+    name: "Floor 7",
+    svgPoints: "89,500 597,567 595,545 91,466",
+    status: "available" as const,
+    floorNumber: 7,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-8",
+    name: "Floor 8",
+    svgPoints: "92,465 595,545 593,528 94,431",
+    status: "available" as const,
+    floorNumber: 8,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-9",
+    name: "Floor 9",
+    svgPoints: "90,430 597,524 594,500 91,396",
+    status: "available" as const,
+    floorNumber: 9,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-10",
+    name: "Floor 10",
+    svgPoints: "94,397 594,501 592,479 93,361",
+    status: "available" as const,
+    floorNumber: 10,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-11",
+    name: "Floor 11",
+    svgPoints: "91,361 593,480 592,463 92,330",
+    status: "available" as const,
+    floorNumber: 11,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-12",
+    name: "Floor 12",
+    svgPoints: "92,329 593,461 591,441 92,294",
+    status: "available" as const,
+    floorNumber: 12,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-13",
+    name: "Floor 13",
+    svgPoints: "94,295 592,440 591,416 93,262",
+    status: "available" as const,
+    floorNumber: 13,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-14",
+    name: "Floor 14",
+    svgPoints: "92,259 592,418 590,398 94,225",
+    status: "available" as const,
+    floorNumber: 14,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-15",
+    name: "Floor 15",
+    svgPoints: "93,225 592,396 589,374 95,193",
+    status: "available" as const,
+    floorNumber: 15,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-16",
+    name: "Floor 16",
+    svgPoints: "94,192 590,377 590,354 96,149",
+    status: "available" as const,
+    floorNumber: 16,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-17",
+    name: "Floor 17",
+    svgPoints: "95,146 590,351 590,334 98,124",
+    status: "available" as const,
+    floorNumber: 17,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-18",
+    name: "Floor 18",
+    svgPoints: "94,124 588,333 588,313 96,91",
+    status: "available" as const,
+    floorNumber: 18,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-19",
+    name: "Floor 19",
+    svgPoints: "94,93 589,314 587,295 96,60",
+    status: "available" as const,
+    floorNumber: 19,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  },
+  {
+    id: "floor-20",
+    name: "Floor 20",
+    svgPoints: "96,59 588,295 588,271 96,23",
+    status: "available" as const,
+    floorNumber: 20,
+    floorPlanImage: "assets/floor-a.jpg",
+    floorPlanViewBox: "0 0 1227 836",
+    unitPolygons: []
+  }
+];
   private demoProject: Project = {
     id: 'project-1',
     name: 'Sunset Residences',
