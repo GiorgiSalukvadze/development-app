@@ -18,10 +18,10 @@ export class UnitModalComponent implements OnInit {
   
   // Demo images for the gallery
   galleryImages: string[] = [
-    'assets/images/unit-living.jpg',
-    'assets/images/unit-bedroom.jpg',
-    'assets/images/unit-kitchen.jpg',
-    'assets/images/unit-bathroom.jpg'
+    './assets/4.jpg',
+    './assets/3.png',
+    './assets/2.png',
+    './assets/1.png'
   ];
 
   ngOnInit(): void {

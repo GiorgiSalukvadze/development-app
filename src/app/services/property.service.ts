@@ -16,7 +16,187 @@ private realFloorPolygons = [
     floorNumber: 1,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [
+      {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }
+    ]
   },
   {
     id: "floor-2",
@@ -26,7 +206,185 @@ private realFloorPolygons = [
     floorNumber: 2,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-3",
@@ -36,17 +394,373 @@ private realFloorPolygons = [
     floorNumber: 3,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-4",
     name: "Floor 4",
     svgPoints: "87,606 600,632 598,607 87,571",
-    status: "available" as const,
+    status: "sold" as const,
     floorNumber: 4,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-5",
@@ -56,7 +770,185 @@ private realFloorPolygons = [
     floorNumber: 5,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-6",
@@ -66,7 +958,185 @@ private realFloorPolygons = [
     floorNumber: 6,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-7",
@@ -76,7 +1146,185 @@ private realFloorPolygons = [
     floorNumber: 7,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "sold" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "sold" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-8",
@@ -86,7 +1334,185 @@ private realFloorPolygons = [
     floorNumber: 8,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "sold" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "sold" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-9",
@@ -96,7 +1522,185 @@ private realFloorPolygons = [
     floorNumber: 9,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-10",
@@ -106,7 +1710,185 @@ private realFloorPolygons = [
     floorNumber: 10,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-11",
@@ -116,7 +1898,185 @@ private realFloorPolygons = [
     floorNumber: 11,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-12",
@@ -126,7 +2086,185 @@ private realFloorPolygons = [
     floorNumber: 12,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-13",
@@ -136,7 +2274,185 @@ private realFloorPolygons = [
     floorNumber: 13,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-14",
@@ -146,7 +2462,185 @@ private realFloorPolygons = [
     floorNumber: 14,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-15",
@@ -156,7 +2650,185 @@ private realFloorPolygons = [
     floorNumber: 15,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-16",
@@ -166,7 +2838,185 @@ private realFloorPolygons = [
     floorNumber: 16,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-17",
@@ -176,7 +3026,185 @@ private realFloorPolygons = [
     floorNumber: 17,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-18",
@@ -186,7 +3214,185 @@ private realFloorPolygons = [
     floorNumber: 18,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-19",
@@ -196,7 +3402,185 @@ private realFloorPolygons = [
     floorNumber: 19,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   },
   {
     id: "floor-20",
@@ -206,7 +3590,185 @@ private realFloorPolygons = [
     floorNumber: 20,
     floorPlanImage: "assets/floor-a.jpg",
     floorPlanViewBox: "0 0 1227 836",
-    unitPolygons: []
+    unitPolygons: [  {
+        id: "unit-1a",
+        name: "Unit 101",
+        svgPoints: "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419", // Your coordinates from the tool
+        status: "available" as const,
+        area: 85,
+        bedrooms: 2,
+        bathrooms: 1,
+        price: 250000
+      },
+        {
+    id: "polygon-1765450743413",
+    name: "unit 102",
+    svgPoints: "129,256 234,259 233,403 146,404 146,387 126,387",
+    status: "available" as const,
+    area: 91,
+    bedrooms: 1,
+    bathrooms: 1,
+    price: 120000
+  },
+      {
+    id: "polygon-1765450999524",
+    name: "Unit 103",
+   svgPoints: "234,258 333,255 335,404 235,405",
+    status: "sold" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },{
+    id: "polygon-1765451198732",
+    name: "Unit 1",
+    svgPoints: "465,261 573,256 575,401 468,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451212477",
+    name: "Unit 2",
+    svgPoints: "571,259 676,261 676,261 676,261 682,403 580,402",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451234597",
+    name: "Unit 3",
+    svgPoints: "676,259 844,262 843,365 770,366 771,404 684,400",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451247037",
+    name: "Unit 4",
+    svgPoints: "887,258 989,260 990,405 888,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451257034",
+    name: "Unit 5",
+    svgPoints: "991,261 1088,259 1090,405 990,405",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451283500",
+    name: "Unit 6",
+    svgPoints: "1090,260 1215,259 1212,417 1150,420 1150,413 1117,412 1116,401 1092,401",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451317536",
+    name: "Unit 7",
+    svgPoints: "20,421 121,421 122,427 158,426 215,436 225,461 220,545 19,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451326915",
+    name: "Unit 8",
+    svgPoints: "226,435 372,437 370,542 224,544",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451340572",
+    name: "Unit 9",
+    svgPoints: "373,436 467,437 470,543 373,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451348426",
+    name: "Unit 10",
+    svgPoints: "467,437 573,436 576,546 471,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451356527",
+    name: "Unit 11",
+    svgPoints: "572,437 680,438 680,545 575,545",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451374868",
+    name: "Unit 12",
+    svgPoints: "679,437 780,439 781,545 684,546",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451392147",
+    name: "Unit 13",
+    svgPoints: "780,438 930,435 936,580 783,582",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451399981",
+    name: "Unit 14",
+    svgPoints: "935,438 1092,436 1088,582 935,586",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  },
+  {
+    id: "polygon-1765451411831",
+    name: "Unit 15",
+    svgPoints: "1091,434 1116,432 1117,409 1209,418 1212,578 1091,577",
+    status: "available" as const,
+    area: 100,
+    bedrooms: 2,
+    bathrooms: 1,
+    price: 100000
+  }]
   }
 ];
   private demoProject: Project = {
@@ -254,30 +3816,30 @@ private realFloorPolygons = [
   }
 
   private generateUnitsFromPolygons(floorData: any): Unit[] {
-    if (floorData.unitPolygons && floorData.unitPolygons.length > 0) {
-      return floorData.unitPolygons.map((unitData: any, index: number) => ({
-        id: `${floorData.id}-${unitData.id}`,
-        name: unitData.name,
-        floorId: floorData.id,
-        status: unitData.status,
-        area: unitData.area,
-        bedrooms: unitData.bedrooms,
-        bathrooms: unitData.bathrooms,
-        price: unitData.price,
-        polygonPoints: unitData.svgPoints,
-        description: `Beautiful ${unitData.bedrooms} bedroom apartment on floor ${floorData.floorNumber}`,
-        features: [
-          'Central heating',
-          'Air conditioning',
-          'Balcony',
-          'Parking space',
-          index % 2 === 0 ? 'City view' : 'Garden view'
-        ]
-      }));
-    }
-    // Fallback to generated units if no polygon data
-    return this.generateUnitsForFloor(floorData.id, floorData.floorNumber);
+  if (floorData.unitPolygons && floorData.unitPolygons.length > 0) {
+    return floorData.unitPolygons.map((unitData: any, index: number) => ({
+      id: `${floorData.id}-${unitData.id || `unit-${index + 1}`}`,
+      name: unitData.name || `Unit ${floorData.floorNumber}${String.fromCharCode(97 + index)}`,
+      floorId: floorData.id,
+      status: unitData.status || 'available',
+      area: unitData.area || 75 + (index * 15),
+      bedrooms: unitData.bedrooms || (index <= 1 ? 2 : 3),
+      bathrooms: unitData.bathrooms || (index <= 1 ? 1 : 2),
+      price: unitData.price || 150000 + (floorData.floorNumber * 10000) + (index * 25000),
+      polygonPoints: unitData.svgPoints,  // This is what matters!
+      description: unitData.description || `Beautiful ${unitData.bedrooms || (index <= 1 ? 2 : 3)} bedroom apartment on floor ${floorData.floorNumber}`,
+      features: [
+        'Central heating',
+        'Air conditioning',
+        'Balcony',
+        'Parking space',
+        index % 2 === 0 ? 'City view' : 'Garden view'
+      ]
+    }));
   }
+  // Fallback to generated units if no polygon data
+  return this.generateUnitsForFloor(floorData.id, floorData.floorNumber);
+}
 
   private generateUnitsForFloor(floorId: string, floorNumber: number): Unit[] {
     const units: Unit[] = [];
@@ -316,10 +3878,7 @@ private realFloorPolygons = [
     // Floor plan is divided into 4 quadrants for units
     // Viewbox is 800x600
     const positions: { [key: number]: string } = {
-      1: '50,50 350,50 350,250 50,250',   // Top-left
-      2: '400,50 750,50 750,250 400,250', // Top-right
-      3: '50,300 350,300 350,550 50,550', // Bottom-left
-      4: '400,300 750,300 750,550 400,550' // Bottom-right
+      
     };
     
     return positions[unitNumber] || positions[1];
