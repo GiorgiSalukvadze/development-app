@@ -14,6 +14,15 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Export JSON
       </button>
+      <!-- Manual Resize Button -->
+      <button class="btn-secondary" (click)="toggleResizeOptions()" [class.active]="showResizeOptions" [disabled]="!imageLoaded">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
+        </svg>
+        Resize Image
+      </button>
     </div>
   </header>
 
@@ -34,7 +43,80 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
           {{ imageLoaded ? 'Change Image' : 'Upload Image' }}
         </button>
+        
+        @if (imageLoaded && image) {
+          <div class="image-info">
+            <p><strong>Current Size:</strong> {{ image.width }} × {{ image.height }}px</p>
+            <p><strong>Original:</strong> {{ originalImageWidth }} × {{ originalImageHeight }}px</p>
+          </div>
+        }
       </div>
+
+      <!-- Manual Resize Options -->
+      @if (showResizeOptions && imageLoaded) {
+        <div class="sidebar-section resize-section">
+          <h3>📏 Manual Resize</h3>
+          
+          <div class="form-group">
+            <label>Width (px)</label>
+            <input 
+              type="number" 
+              [(ngModel)]="manualWidth" 
+              min="10" 
+              max="5000"
+              (change)="updateHeight()"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Height (px)</label>
+            <input 
+              type="number" 
+              [(ngModel)]="manualHeight" 
+              min="10" 
+              max="5000"
+              (change)="updateWidth()"
+            />
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label>
+              <input 
+                type="checkbox" 
+                [(ngModel)]="maintainAspectRatio"
+              />
+              Maintain Aspect Ratio
+            </label>
+          </div>
+
+          <div class="resize-actions">
+            <button class="btn-primary" (click)="resizeImage()">
+              ✅ Apply Resize
+            </button>
+            <button class="btn-secondary" (click)="resetImageSize()">
+              ↩️ Reset to Original
+            </button>
+          </div>
+
+          <div class="quick-presets">
+            <p>Common Sizes:</p>
+            <div class="preset-buttons">
+              <button (click)="manualWidth = 1024; manualHeight = 768; maintainAspectRatio = false; resizeImage()">
+                1024×768
+              </button>
+              <button (click)="manualWidth = 1920; manualHeight = 1080; maintainAspectRatio = false; resizeImage()">
+                1920×1080
+              </button>
+              <button (click)="manualWidth = 800; manualHeight = 600; maintainAspectRatio = false; resizeImage()">
+                800×600
+              </button>
+              <button (click)="manualWidth = 1200; manualHeight = 800; maintainAspectRatio = false; resizeImage()">
+                1200×800
+              </button>
+            </div>
+          </div>
+        </div>
+      }
 
       <!-- Mode Selection -->
       <div class="sidebar-section">
@@ -197,6 +279,9 @@
           <p><strong>Draw Mode:</strong> Click to add points. Right-click to undo last point. Complete with 3+ points.</p>
         } @else {
           <p><strong>Select Mode:</strong> Click on a polygon to select and edit it.</p>
+        }
+        @if (imageLoaded && image) {
+          <p><strong>Image Size:</strong> {{ image.width }} × {{ image.height }}px</p>
         }
       </div>
     </main>

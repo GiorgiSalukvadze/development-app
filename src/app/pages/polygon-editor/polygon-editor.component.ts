@@ -35,7 +35,7 @@ export class PolygonEditorComponent implements AfterViewInit {
   @ViewChild('fileInput') fileInputRef!: ElementRef<HTMLInputElement>;
 
   private ctx!: CanvasRenderingContext2D;
-  private image: HTMLImageElement | null = null;
+  image: HTMLImageElement | null = null;
   
   // Canvas state
   canvasWidth = 800;
@@ -74,6 +74,15 @@ export class PolygonEditorComponent implements AfterViewInit {
   showImportModal = false;
   importJson = '';
 
+  // ===== NEW: Manual resize properties =====
+  showResizeOptions = false;
+  manualWidth = 800;
+  manualHeight = 600;
+  originalImageWidth = 0;
+  originalImageHeight = 0;
+  maintainAspectRatio = true;
+  // =========================================
+
   ngAfterViewInit(): void {
     this.initCanvas();
   }
@@ -93,6 +102,14 @@ export class PolygonEditorComponent implements AfterViewInit {
       reader.onload = (e) => {
         this.image = new Image();
         this.image.onload = () => {
+          // Store original dimensions
+          this.originalImageWidth = this.image!.width;
+          this.originalImageHeight = this.image!.height;
+          
+          // Set initial manual dimensions to original
+          this.manualWidth = this.originalImageWidth;
+          this.manualHeight = this.originalImageHeight;
+          
           // Adjust canvas to image size (with max constraints)
           const maxWidth = 1200;
           const maxHeight = 800;
@@ -132,6 +149,125 @@ export class PolygonEditorComponent implements AfterViewInit {
       reader.readAsDataURL(file);
     }
   }
+
+  // ===== NEW: Manual resize function =====
+  resizeImage(): void {
+    if (!this.image) return;
+    
+    // Validate dimensions
+    if (this.manualWidth < 10 || this.manualHeight < 10) {
+      alert('Minimum size is 10x10 pixels');
+      return;
+    }
+    
+    if (this.manualWidth > 5000 || this.manualHeight > 5000) {
+      alert('Maximum size is 5000x5000 pixels');
+      return;
+    }
+    
+    // Create a temporary canvas for resizing
+    const tempCanvas = document.createElement('canvas');
+    const tempCtx = tempCanvas.getContext('2d')!;
+    
+    tempCanvas.width = this.manualWidth;
+    tempCanvas.height = this.manualHeight;
+    
+    // Draw the image at new size
+    tempCtx.drawImage(this.image, 0, 0, this.manualWidth, this.manualHeight);
+    
+    // Create a new image with resized dimensions
+    const resizedImage = new Image();
+    resizedImage.onload = () => {
+      this.image = resizedImage;
+      
+      // Update canvas size to fit new image
+      this.canvasWidth = this.manualWidth;
+      this.canvasHeight = this.manualHeight;
+      this.scale = 1; // Since we're drawing at actual size
+      
+      // Update canvas
+      setTimeout(() => {
+        const canvas = this.canvasRef.nativeElement;
+        canvas.width = this.canvasWidth;
+        canvas.height = this.canvasHeight;
+        this.ctx = canvas.getContext('2d')!;
+        this.redraw();
+      }, 0);
+    };
+    resizedImage.src = tempCanvas.toDataURL('image/jpeg', 0.9);
+  }
+
+  resetImageSize(): void {
+    if (!this.image) return;
+    
+    // Reload original image
+    const originalSrc = this.image.src;
+    const reloadedImage = new Image();
+    reloadedImage.onload = () => {
+      this.image = reloadedImage;
+      this.manualWidth = this.originalImageWidth;
+      this.manualHeight = this.originalImageHeight;
+      
+      // Reset canvas to original size
+      this.canvasWidth = this.originalImageWidth;
+      this.canvasHeight = this.originalImageHeight;
+      
+      // Apply max constraints again
+      const maxWidth = 1200;
+      const maxHeight = 800;
+      
+      let width = this.canvasWidth;
+      let height = this.canvasHeight;
+      
+      if (width > maxWidth) {
+        const ratio = maxWidth / width;
+        width = maxWidth;
+        height = height * ratio;
+      }
+      
+      if (height > maxHeight) {
+        const ratio = maxHeight / height;
+        height = height * ratio;
+        width = width * ratio;
+      }
+      
+      this.canvasWidth = width;
+      this.canvasHeight = height;
+      this.scale = width / this.image!.width;
+      
+      setTimeout(() => {
+        const canvas = this.canvasRef.nativeElement;
+        canvas.width = this.canvasWidth;
+        canvas.height = this.canvasHeight;
+        this.ctx = canvas.getContext('2d')!;
+        this.redraw();
+      }, 0);
+    };
+    reloadedImage.src = originalSrc;
+  }
+
+  // Update height when width changes (maintaining aspect ratio)
+  updateHeight(): void {
+    if (this.maintainAspectRatio && this.originalImageWidth > 0) {
+      const aspectRatio = this.originalImageHeight / this.originalImageWidth;
+      this.manualHeight = Math.round(this.manualWidth * aspectRatio);
+    }
+  }
+
+  // Update width when height changes (maintaining aspect ratio)
+  updateWidth(): void {
+    if (this.maintainAspectRatio && this.originalImageHeight > 0) {
+      const aspectRatio = this.originalImageWidth / this.originalImageHeight;
+      this.manualWidth = Math.round(this.manualHeight * aspectRatio);
+    }
+  }
+  // =========================================
+
+  // ===== NEW: Toggle resize options =====
+  toggleResizeOptions(): void {
+    this.showResizeOptions = !this.showResizeOptions;
+  }
+  // ======================================
 
   onCanvasClick(event: MouseEvent): void {
     const canvas = this.canvasRef.nativeElement;
@@ -306,6 +442,19 @@ export class PolygonEditorComponent implements AfterViewInit {
         this.ctx.stroke();
       });
     }
+    
+    // ===== NEW: Draw image size info =====
+    if (this.image) {
+      this.ctx.fillStyle = '#3b82f6';
+      this.ctx.font = '14px Inter, sans-serif';
+      this.ctx.textAlign = 'right';
+      this.ctx.fillText(
+        `Size: ${this.image.width} × ${this.image.height}px`,
+        this.canvasWidth - 20,
+        30
+      );
+    }
+    // =====================================
   }
 
   private drawPolygon(points: Point[], color: string, isSelected: boolean, isInProgress = false): void {
@@ -376,21 +525,16 @@ export class PolygonEditorComponent implements AfterViewInit {
       canvasWidth: this.canvasWidth,
       canvasHeight: this.canvasHeight,
       scale: this.scale,
-      // Provide the viewBox that should be used with these polygons
-      // This matches the original image dimensions for perfect alignment
       viewBox: `0 0 ${imageWidth} ${imageHeight}`,
       polygons: this.polygons.map(p => ({
         ...p,
-        // Convert to percentage-based coordinates for responsive use
         pointsPercentage: p.points.map(pt => ({
           x: (pt.x / this.canvasWidth) * 100,
           y: (pt.y / this.canvasHeight) * 100
         })),
-        // SVG points scaled to ORIGINAL IMAGE dimensions (for use with viewBox matching image)
         svgPoints: p.points.map(pt => 
           `${Math.round(pt.x * scaleToImage)},${Math.round(pt.y * scaleToImage)}`
         ).join(' '),
-        // Also keep canvas-based coordinates if needed
         svgPointsCanvas: p.points.map(pt => `${pt.x},${pt.y}`).join(' ')
       }))
     };

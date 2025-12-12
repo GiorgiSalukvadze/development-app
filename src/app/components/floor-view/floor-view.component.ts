@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Floor, Unit } from '../../models/property.models';
 import { RouterLink } from '@angular/router';
@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './floor-view.component.html',
   styleUrl: './floor-view.component.scss'
 })
-export class FloorViewComponent {
+export class FloorViewComponent implements OnInit {
   @Input() floor!: Floor;
   @Output() unitSelected = new EventEmitter<Unit>();
   @Output() goBack = new EventEmitter<void>();
@@ -19,6 +19,40 @@ export class FloorViewComponent {
   tappedUnit: Unit | null = null;
   mousePosition: { x: number; y: number } = { x: 0, y: 0 };
 
+  ngOnInit(): void {
+    // Clean up units on initialization
+    this.cleanUpUnits();
+  }
+
+  private cleanUpUnits(): void {
+    if (!this.floor?.units) return;
+    
+    // Remove units with invalid polygon data
+    this.floor.units = this.floor.units.filter(unit => {
+      // Check if polygonPoints is valid
+      if (!unit.polygonPoints || unit.polygonPoints.trim() === '') {
+        return false; // Remove units without polygon points
+      }
+      
+      // Check if polygonPoints has valid coordinates
+      const points = unit.polygonPoints.split(' ').filter(p => p.trim() !== '');
+      if (points.length < 3) {
+        return false; // Remove units with less than 3 points (not a polygon)
+      }
+      
+      // Check if coordinates are valid numbers
+      const isValid = points.every(point => {
+        const [x, y] = point.split(',').map(Number);
+        return !isNaN(x) && !isNaN(y);
+      });
+      
+      return isValid;
+    });
+    
+    console.log(`Cleaned up units. Now have ${this.floor.units.length} valid units.`);
+  }
+
+  // Rest of your existing methods remain the same...
   onUnitClick(unit: Unit, event?: MouseEvent): void {
     const isMobile = window.innerWidth <= 600;
     
@@ -76,7 +110,6 @@ export class FloorViewComponent {
   }
 
   getUnitColor(unit: Unit): string {
-    // Transparent by default, only show on hover
     return 'transparent';
   }
 
