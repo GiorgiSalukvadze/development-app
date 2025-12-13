@@ -58,7 +58,8 @@ export class FloorPageComponent implements OnInit {
   }
 
   onUnitSelected(unit: Unit): void {
-    this.selectedUnit = unit;
+      if (unit.status.toLowerCase().trim() !== 'sold'){
+        this.selectedUnit = unit;}
   }
 
   onBackToBuilding(): void {
