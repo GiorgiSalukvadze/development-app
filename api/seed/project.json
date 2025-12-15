@@ -1,0 +1,172 @@
+{
+  "id": "project-1",
+  "name": "Sunset Residences",
+  "description": "Luxury apartments with stunning city views",
+  "buildings": [
+    {
+      "id": "building-1",
+      "name": "Tower A",
+      "address": "123 Development Ave, City Center",
+      "description": "Premium residential tower",
+      "totalFloors": 2,
+      "renderImage": "assets/town-a.jpeg",
+      "floors": [
+        {
+          "id": "floor-1",
+          "buildingId": "building-1",
+          "floorNumber": 1,
+          "name": "Floor 1",
+          "status": "available",
+          "polygonPoints": "83,717 601,697 598,675 83,678",
+          "floorPlanImage": "assets/floor-a.jpg",
+          "floorPlanViewBox": "0 0 1227 836",
+          "units": [
+            {
+              "id": "floor-1-unit-101",
+              "name": "Unit 101",
+              "floorId": "floor-1",
+              "status": "available",
+              "area": 85,
+              "bedrooms": 2,
+              "bathrooms": 1,
+              "price": 250000,
+              "polygonPoints": "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419",
+              "description": "Spacious 2BR with great light.",
+              "features": ["Central heating", "Air conditioning", "Balcony", "Parking space"]
+            },
+            {
+              "id": "floor-1-unit-102",
+              "name": "Unit 102",
+              "floorId": "floor-1",
+              "status": "available",
+              "area": 91,
+              "bedrooms": 1,
+              "bathrooms": 1,
+              "price": 120000,
+              "polygonPoints": "129,256 234,259 233,403 146,404 146,387 126,387",
+              "description": "Cozy 1BR starter home.",
+              "features": ["Central heating", "Balcony"]
+            },
+            {
+              "id": "floor-1-unit-103",
+              "name": "Unit 103",
+              "floorId": "floor-1",
+              "status": "sold",
+              "area": 100,
+              "bedrooms": 2,
+              "bathrooms": 1,
+              "price": 100000,
+              "polygonPoints": "234,258 333,255 335,404 235,405",
+              "description": "Sold unit example.",
+              "features": ["Air conditioning"]
+            },
+            {
+              "id": "floor-1-unit-104",
+              "name": "Unit 104",
+              "floorId": "floor-1",
+              "status": "available",
+              "area": 100,
+              "bedrooms": 2,
+              "bathrooms": 1,
+              "price": 150000,
+              "polygonPoints": "465,261 573,256 575,401 468,401",
+              "description": "Corner 2BR with balcony.",
+              "features": ["Balcony", "Parking space"]
+            },
+            {
+              "id": "floor-1-unit-105",
+              "name": "Unit 105",
+              "floorId": "floor-1",
+              "status": "available",
+              "area": 100,
+              "bedrooms": 2,
+              "bathrooms": 1,
+              "price": 155000,
+              "polygonPoints": "571,259 676,261 682,403 580,402",
+              "description": "Bright 2BR facing east.",
+              "features": ["Central heating", "Air conditioning"]
+            }
+          ]
+        },
+        {
+          "id": "floor-2",
+          "buildingId": "building-1",
+          "floorNumber": 2,
+          "name": "Floor 2",
+          "status": "available",
+          "polygonPoints": "85,679 601,676 601,652 89,642",
+          "floorPlanImage": "assets/floor-a.jpg",
+          "floorPlanViewBox": "0 0 1227 836",
+          "units": [
+            {
+              "id": "floor-2-unit-201",
+              "name": "Unit 201",
+              "floorId": "floor-2",
+              "status": "available",
+              "area": 85,
+              "bedrooms": 2,
+              "bathrooms": 1,
+              "price": 260000,
+              "polygonPoints": "17,258 129,257 129,388 144,388 145,402 161,404 161,429 121,429 122,419 20,419",
+              "description": "Similar layout to 101 on higher floor.",
+              "features": ["Central heating", "Air conditioning", "Balcony", "Parking space"]
+            },
+            {
+              "id": "floor-2-unit-202",
+              "name": "Unit 202",
+              "floorId": "floor-2",
+              "status": "available",
+              "area": 91,
+              "bedrooms": 1,
+              "bathrooms": 1,
+              "price": 130000,
+              "polygonPoints": "129,256 234,259 233,403 146,404 146,387 126,387",
+              "description": "Open-plan 1BR.",
+              "features": ["Balcony"]
+            },
+            {
+              "id": "floor-2-unit-203",
+              "name": "Unit 203",
+              "floorId": "floor-2",
+              "status": "sold",
+              "area": 100,
+              "bedrooms": 2,
+              "bathrooms": 1,
+              "price": 110000,
+              "polygonPoints": "234,258 333,255 335,404 235,405",
+              "description": "Sold example on floor 2.",
+              "features": ["Air conditioning"]
+            },
+            {
+              "id": "floor-2-unit-204",
+              "name": "Unit 204",
+              "floorId": "floor-2",
+              "status": "available",
+              "area": 100,
+              "bedrooms": 2,
+              "bathrooms": 1,
+              "price": 160000,
+              "polygonPoints": "465,261 573,256 575,401 468,401",
+              "description": "Corner 2BR higher floor.",
+              "features": ["Balcony", "Parking space"]
+            },
+            {
+              "id": "floor-2-unit-205",
+              "name": "Unit 205",
+              "floorId": "floor-2",
+              "status": "available",
+              "area": 100,
+              "bedrooms": 2,
+              "bathrooms": 1,
+              "price": 165000,
+              "polygonPoints": "571,259 676,261 682,403 580,402",
+              "description": "Bright 2BR with city view.",
+              "features": ["Central heating", "Air conditioning"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

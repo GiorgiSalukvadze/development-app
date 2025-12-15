@@ -1,0 +1,318 @@
+<div class="editor-container">
+  <!-- Header -->
+  <header class="editor-header">
+    <div class="header-left">
+      <h1>🎨 Polygon Editor</h1>
+      <p>Draw interactive floor/unit areas on your renders</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-secondary" (click)="openImportModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Import
+      </button>
+      <button class="btn-primary" (click)="exportPolygons()" [disabled]="polygons.length === 0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export JSON
+      </button>
+      <!-- Manual Resize Button -->
+      <button class="btn-secondary" (click)="toggleResizeOptions()" [class.active]="showResizeOptions" [disabled]="!imageLoaded">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
+        </svg>
+        Resize Image
+      </button>
+    </div>
+  </header>
+
+  <div class="editor-content">
+    <!-- Sidebar -->
+    <aside class="editor-sidebar">
+      <!-- Image Upload -->
+      <div class="sidebar-section">
+        <h3>📷 Image</h3>
+        <input 
+          type="file" 
+          #fileInput 
+          (change)="onFileSelected($event)" 
+          accept="image/*"
+          style="display: none"
+        />
+        <button class="btn-upload" (click)="fileInput.click()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          {{ imageLoaded ? 'Change Image' : 'Upload Image' }}
+        </button>
+        
+        @if (imageLoaded && image) {
+          <div class="image-info">
+            <p><strong>Current Size:</strong> {{ image.width }} × {{ image.height }}px</p>
+            <p><strong>Original:</strong> {{ originalImageWidth }} × {{ originalImageHeight }}px</p>
+          </div>
+        }
+      </div>
+
+      <!-- Manual Resize Options -->
+      @if (showResizeOptions && imageLoaded) {
+        <div class="sidebar-section resize-section">
+          <h3>📏 Manual Resize</h3>
+          
+          <div class="form-group">
+            <label>Width (px)</label>
+            <input 
+              type="number" 
+              [(ngModel)]="manualWidth" 
+              min="10" 
+              max="5000"
+              (change)="updateHeight()"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Height (px)</label>
+            <input 
+              type="number" 
+              [(ngModel)]="manualHeight" 
+              min="10" 
+              max="5000"
+              (change)="updateWidth()"
+            />
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label>
+              <input 
+                type="checkbox" 
+                [(ngModel)]="maintainAspectRatio"
+              />
+              Maintain Aspect Ratio
+            </label>
+          </div>
+
+          <div class="resize-actions">
+            <button class="btn-primary" (click)="resizeImage()">
+              ✅ Apply Resize
+            </button>
+            <button class="btn-secondary" (click)="resetImageSize()">
+              ↩️ Reset to Original
+            </button>
+          </div>
+
+          <div class="quick-presets">
+            <p>Common Sizes:</p>
+            <div class="preset-buttons">
+              <button (click)="manualWidth = 1024; manualHeight = 768; maintainAspectRatio = false; resizeImage()">
+                1024×768
+              </button>
+              <button (click)="manualWidth = 1920; manualHeight = 1080; maintainAspectRatio = false; resizeImage()">
+                1920×1080
+              </button>
+              <button (click)="manualWidth = 800; manualHeight = 600; maintainAspectRatio = false; resizeImage()">
+                800×600
+              </button>
+              <button (click)="manualWidth = 1200; manualHeight = 800; maintainAspectRatio = false; resizeImage()">
+                1200×800
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Mode Selection -->
+      <div class="sidebar-section">
+        <h3>🖱️ Mode</h3>
+        <div class="mode-buttons">
+          <button 
+            [class.active]="editorMode === 'draw'" 
+            (click)="setMode('draw')"
+            title="Draw new polygons"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/></svg>
+            Draw
+          </button>
+          <button 
+            [class.active]="editorMode === 'select'" 
+            (click)="setMode('select')"
+            title="Select & edit polygons"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>
+            Select
+          </button>
+        </div>
+      </div>
+
+      <!-- Polygon Type -->
+      <div class="sidebar-section">
+        <h3>📦 Type</h3>
+        <div class="type-buttons">
+          <button 
+            [class.active]="polygonType === 'floor'" 
+            (click)="polygonType = 'floor'"
+          >
+            🏢 Floor
+          </button>
+          <button 
+            [class.active]="polygonType === 'unit'" 
+            (click)="polygonType = 'unit'"
+          >
+            🏠 Unit
+          </button>
+        </div>
+      </div>
+
+      <!-- Polygon Properties -->
+      <div class="sidebar-section">
+        <h3>⚙️ Properties</h3>
+        
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" [(ngModel)]="newPolygonName" [placeholder]="polygonType === 'floor' ? 'Floor 1' : 'Unit 101'"/>
+        </div>
+
+        <div class="form-group">
+          <label>Status</label>
+          <select [(ngModel)]="newPolygonStatus">
+            <option value="available">✅ Available</option>
+            <option value="reserved">⏳ Reserved</option>
+            <option value="sold">🔴 Sold</option>
+          </select>
+        </div>
+
+        @if (polygonType === 'floor') {
+          <div class="form-group">
+            <label>Floor Number</label>
+            <input type="number" [(ngModel)]="newPolygonFloorNumber" min="1"/>
+          </div>
+        }
+
+        @if (polygonType === 'unit') {
+          <div class="form-group">
+            <label>Area (m²)</label>
+            <input type="number" [(ngModel)]="newPolygonArea" min="1"/>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Beds</label>
+              <input type="number" [(ngModel)]="newPolygonBedrooms" min="0"/>
+            </div>
+            <div class="form-group">
+              <label>Baths</label>
+              <input type="number" [(ngModel)]="newPolygonBathrooms" min="0"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Price ($)</label>
+            <input type="number" [(ngModel)]="newPolygonPrice" min="0"/>
+          </div>
+        }
+      </div>
+
+      <!-- Actions -->
+      <div class="sidebar-section">
+        @if (editorMode === 'draw' && currentPolygon.length > 0) {
+          <div class="drawing-info">
+            <span>{{ currentPolygon.length }} points</span>
+          </div>
+          <button class="btn-success" (click)="completePolygon()" [disabled]="currentPolygon.length < 3">
+            ✓ Complete Polygon
+          </button>
+          <button class="btn-danger" (click)="cancelDrawing()">
+            ✕ Cancel
+          </button>
+        }
+
+        @if (editorMode === 'select' && selectedPolygonIndex !== null) {
+          <button class="btn-primary" (click)="updateSelectedPolygon()">
+            💾 Update Polygon
+          </button>
+          <button class="btn-danger" (click)="deleteSelectedPolygon()">
+            🗑️ Delete Polygon
+          </button>
+        }
+      </div>
+
+      <!-- Polygon List -->
+      <div class="sidebar-section polygon-list">
+        <h3>📋 Polygons ({{ polygons.length }})</h3>
+        @if (polygons.length === 0) {
+          <p class="empty-message">No polygons yet. Start drawing!</p>
+        }
+        @for (polygon of polygons; track polygon.id; let i = $index) {
+          <div 
+            class="polygon-item" 
+            [class.selected]="selectedPolygonIndex === i"
+            [class]="polygon.status"
+            (click)="setMode('select'); selectedPolygonIndex = i; loadPolygonToForm(polygon); redraw();"
+          >
+            <span class="polygon-name">{{ polygon.name }}</span>
+            <span class="polygon-type">{{ polygon.type }}</span>
+          </div>
+        }
+      </div>
+
+      <!-- Clear All -->
+      @if (polygons.length > 0) {
+        <button class="btn-danger btn-clear" (click)="clearAll()">
+          🗑️ Clear All
+        </button>
+      }
+    </aside>
+
+    <!-- Canvas Area -->
+    <main class="canvas-area">
+      <div class="canvas-wrapper">
+        <canvas 
+          #canvas
+          [width]="canvasWidth"
+          [height]="canvasHeight"
+          (click)="onCanvasClick($event)"
+          (contextmenu)="onCanvasRightClick($event)"
+          [class.drawing]="editorMode === 'draw'"
+          [class.selecting]="editorMode === 'select'"
+        ></canvas>
+      </div>
+      
+      <div class="canvas-instructions">
+        @if (editorMode === 'draw') {
+          <p><strong>Draw Mode:</strong> Click to add points. Right-click to undo last point. Complete with 3+ points.</p>
+        } @else {
+          <p><strong>Select Mode:</strong> Click on a polygon to select and edit it.</p>
+        }
+        @if (imageLoaded && image) {
+          <p><strong>Image Size:</strong> {{ image.width }} × {{ image.height }}px</p>
+        }
+      </div>
+    </main>
+  </div>
+
+  <!-- Export Modal -->
+  @if (showExportModal) {
+    <div class="modal-backdrop" (click)="showExportModal = false">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <h2>Export Polygons</h2>
+        <textarea readonly [value]="exportedJson"></textarea>
+        <div class="modal-actions">
+          <button class="btn-primary" (click)="copyToClipboard()">📋 Copy</button>
+          <button class="btn-secondary" (click)="downloadJson()">💾 Download</button>
+          <button class="btn-ghost" (click)="showExportModal = false">Close</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Import Modal -->
+  @if (showImportModal) {
+    <div class="modal-backdrop" (click)="showImportModal = false">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <h2>Import Polygons</h2>
+        <textarea [(ngModel)]="importJson" placeholder="Paste your JSON here..."></textarea>
+        <div class="modal-actions">
+          <button class="btn-primary" (click)="importPolygons()">Import</button>
+          <button class="btn-ghost" (click)="showImportModal = false">Cancel</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

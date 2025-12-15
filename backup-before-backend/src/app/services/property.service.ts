@@ -1,19 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
 import { Building, Floor, Unit, Project } from '../models/property.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PropertyService {
-  private useApi = true;
-  private apiUrl = 'http://localhost:4000';
-  private get authHeaders() {
-    const token = localStorage.getItem('admin-session-token');
-    return token ? { Authorization: `Bearer ${token}` } : {};
-  }
   // Your converted JSON data matching the TypeScript structure
 private realFloorPolygons = [
   {
@@ -3802,17 +3794,13 @@ private realFloorPolygons = [
   private selectedFloor$ = new BehaviorSubject<Floor | null>(null);
   private selectedUnit$ = new BehaviorSubject<Unit | null>(null);
 
-  constructor(private http: HttpClient) {
-    if (this.useApi) {
-      this.refreshProjectFromApi();
+  constructor() {
+    const cached = this.loadFromStorage();
+    if (cached) {
+      this.project$.next(cached);
     } else {
-      const cached = this.loadFromStorage();
-      if (cached) {
-        this.project$.next(cached);
-      } else {
-        this.project$.next(this.demoProject);
-        this.persistToStorage(this.demoProject);
-      }
+      this.project$.next(this.demoProject);
+      this.persistToStorage(this.demoProject);
     }
   }
 
@@ -3908,12 +3896,6 @@ private realFloorPolygons = [
 
   // Public methods
   getProject(): Observable<Project> {
-    if (this.useApi) {
-      return this.http.get<Project>(`${this.apiUrl}/project`).pipe(
-        tap(project => this.project$.next(project)),
-        catchError(() => of(this.project$.value))
-      );
-    }
     return this.project$.asObservable();
   }
 
@@ -3969,12 +3951,6 @@ private realFloorPolygons = [
 
   // Admin mutations
   markUnitSold(buildingId: string, floorId: string, unitId: string): Observable<Unit | undefined> {
-    if (this.useApi) {
-      return this.http.patch<Unit>(`${this.apiUrl}/units/${unitId}/status`, { status: 'sold' }, { headers: this.authHeaders }).pipe(
-        tap(() => this.refreshProjectFromApi()),
-        catchError(() => of(undefined))
-      );
-    }
     const project = JSON.parse(JSON.stringify(this.project$.value)) as Project;
     const floor = this.findFloor(project, buildingId, floorId);
     if (!floor) return of(undefined);
@@ -3989,12 +3965,6 @@ private realFloorPolygons = [
   }
 
   markUnitAvailable(buildingId: string, floorId: string, unitId: string): Observable<Unit | undefined> {
-    if (this.useApi) {
-      return this.http.patch<Unit>(`${this.apiUrl}/units/${unitId}/status`, { status: 'available' }, { headers: this.authHeaders }).pipe(
-        tap(() => this.refreshProjectFromApi()),
-        catchError(() => of(undefined))
-      );
-    }
     const project = JSON.parse(JSON.stringify(this.project$.value)) as Project;
     const floor = this.findFloor(project, buildingId, floorId);
     if (!floor) return of(undefined);
@@ -4009,12 +3979,6 @@ private realFloorPolygons = [
   }
 
   markFloorSold(buildingId: string, floorId: string): Observable<Floor | undefined> {
-    if (this.useApi) {
-      return this.http.patch<Floor>(`${this.apiUrl}/floors/${floorId}/status`, { status: 'sold' }, { headers: this.authHeaders }).pipe(
-        tap(() => this.refreshProjectFromApi()),
-        catchError(() => of(undefined))
-      );
-    }
     const project = JSON.parse(JSON.stringify(this.project$.value)) as Project;
     const floor = this.findFloor(project, buildingId, floorId);
     if (!floor) return of(undefined);
@@ -4031,12 +3995,6 @@ private realFloorPolygons = [
     unitId: string,
     changes: Partial<Pick<Unit, 'name' | 'price' | 'status' | 'condition' | 'description' | 'area' | 'bedrooms' | 'bathrooms' | 'features'>>
   ): Observable<Unit | undefined> {
-    if (this.useApi) {
-      return this.http.patch<Unit>(`${this.apiUrl}/units/${unitId}`, changes, { headers: this.authHeaders }).pipe(
-        tap(() => this.refreshProjectFromApi()),
-        catchError(() => of(undefined))
-      );
-    }
     const project = JSON.parse(JSON.stringify(this.project$.value)) as Project;
     const floor = this.findFloor(project, buildingId, floorId);
     if (!floor) return of(undefined);
@@ -4052,15 +4010,8 @@ private realFloorPolygons = [
   }
 
   resetProject(): void {
-    if (this.useApi) {
-      this.http.post<Project>(`${this.apiUrl}/admin/reset`, {}, { headers: this.authHeaders }).pipe(
-        tap(project => this.project$.next(project)),
-        catchError(() => of(this.project$.value))
-      ).subscribe();
-    } else {
-      this.project$.next(this.demoProject);
-      this.persistToStorage(this.demoProject);
-    }
+    this.project$.next(this.demoProject);
+    this.persistToStorage(this.demoProject);
   }
 
   // Statistics
@@ -4079,12 +4030,6 @@ private realFloorPolygons = [
 
   private updateFloorStatus(floor: Floor): void {
     floor.status = floor.units.every(u => u.status === 'sold') ? 'sold' : 'available';
-  }
-
-  private refreshProjectFromApi(): void {
-    this.http.get<Project>(`${this.apiUrl}/project`)
-      .pipe(catchError(() => of(this.project$.value)))
-      .subscribe(project => this.project$.next(project));
   }
 
   private findFloor(project: Project, buildingId: string, floorId: string): Floor | undefined {
