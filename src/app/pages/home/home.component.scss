@@ -1,4 +1,6 @@
+@use "sass:color";
 // Variables
+
 $primary: #0f172a;
 $primary-light: #1e293b;
 $accent: #c9a227;
@@ -50,7 +52,7 @@ $gray-500: #64748b;
     inset: 0;
     background: radial-gradient(ellipse at 30% 20%, rgba(201, 162, 39, 0.08) 0%, transparent 50%),
                 radial-gradient(ellipse at 70% 80%, rgba(201, 162, 39, 0.05) 0%, transparent 50%),
-                linear-gradient(180deg, $primary 0%, darken($primary, 3%) 100%);
+                linear-gradient(180deg, $primary 0%, color.adjust($primary, $lightness: -3%) 100%);
   }
   
   .hero-pattern {

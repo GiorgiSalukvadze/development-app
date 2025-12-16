@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LayoutComponent } from '../../components/layout/layout.component';
+import { PropertyService, BuildingHotspot, HomeStat } from '../../services/property.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -10,13 +12,9 @@ import { LayoutComponent } from '../../components/layout/layout.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
-  stats = [
-    { value: '150+', label: 'Projects Completed' },
-    { value: '12K+', label: 'Happy Families' },
-    { value: '25+', label: 'Years Experience' },
-    { value: '98%', label: 'Client Satisfaction' }
-  ];
+export class HomeComponent implements OnInit {
+  stats$: Observable<HomeStat[]> | undefined;
+  hotspots$: Observable<BuildingHotspot[]> | undefined;
 
   features = [
     {
@@ -61,4 +59,19 @@ export class HomeComponent {
       quote: 'We loved being able to compare different units side by side. The whole family could be part of the decision process.'
     }
   ];
+
+  constructor(private propertyService: PropertyService) { }
+
+  ngOnInit() {
+    this.stats$ = this.propertyService.getStats();
+    this.hotspots$ = this.propertyService.getHotspots();
+  }
+
+  getAvailableUnitsCount(floorId: string): number {
+    return this.propertyService.lookupFloor(floorId)?.units.filter(u => u.status === 'available').length || 0;
+  }
+
+  getFloorName(floorId: string): string {
+    return this.propertyService.lookupFloor(floorId)?.name || 'Unknown Floor';
+  }
 }

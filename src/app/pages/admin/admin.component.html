@@ -21,125 +21,134 @@
           </form>
         </div>
       } @else {
-        <div class="toolbar">
-          <div class="selectors">
-            <label>
-              Building
-              <select [ngModel]="selectedBuildingId" (ngModelChange)="onBuildingChange($event)">
-                @for (b of project?.buildings; track b.id) {
-                  <option [value]="b.id">{{ b.name }}</option>
-                }
-              </select>
-            </label>
-            <label>
-              Floor
-              <select [ngModel]="selectedFloorId" (ngModelChange)="onFloorChange($event)">
-                @for (f of currentBuilding?.floors; track f.id) {
-                  <option [value]="f.id">{{ f.name }} ({{ f.status }})</option>
-                }
-              </select>
-            </label>
-          </div>
-          <div class="actions">
-            <button class="danger" (click)="markFloorSold()" [disabled]="currentFloor?.status === 'sold'">Mark floor sold</button>
-            <button class="ghost" (click)="resetData()">Reset data</button>
-            <button class="ghost" (click)="logout()">Logout</button>
-          </div>
+        <div class="admin-tabs">
+          <button [class.active]="activeTab === 'units'" (click)="activeTab = 'units'">Unit Management</button>
+          <button [class.active]="activeTab === 'home'" (click)="activeTab = 'home'">Home Page Configuration</button>
         </div>
 
-        @if (currentFloor) {
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h3>{{ currentFloor.name }}</h3>
-                <p>Status: {{ currentFloor.status | titlecase }} • Units: {{ currentFloor.units.length }}</p>
-              </div>
+        @if (activeTab === 'units') {
+          <div class="toolbar">
+            <div class="selectors">
+              <label>
+                Building
+                <select [ngModel]="selectedBuildingId" (ngModelChange)="onBuildingChange($event)">
+                  @for (b of project?.buildings; track b.id) {
+                    <option [value]="b.id">{{ b.name }}</option>
+                  }
+                </select>
+              </label>
+              <label>
+                Floor
+                <select [ngModel]="selectedFloorId" (ngModelChange)="onFloorChange($event)">
+                  @for (f of currentBuilding?.floors; track f.id) {
+                    <option [value]="f.id">{{ f.name }} ({{ f.status }})</option>
+                  }
+                </select>
+              </label>
             </div>
-            <div class="unit-table-wrapper">
-            <div class="unit-table">
-              <div class="unit-row unit-row--head">
-                <span>Name</span>
-                <span>Status</span>
-                <span>Price</span>
-                <span>Area (m²)</span>
-                <span>Beds</span>
-                <span>Baths</span>
-                <span>Condition</span>
-                <span>Description</span>
-                <span>Features</span>
-                <span>Actions</span>
-              </div>
-              @for (unit of currentFloor.units; track unit.id) {
-                <div class="unit-row">
-                  <span>
-                    <label class="field">
-                      <span class="field-label">Name</span>
-                      <input type="text" [(ngModel)]="unit.name" />
-                    </label>
-                  </span>
-                  <span>
-                    <label class="field">
-                      <span class="field-label">Status</span>
-                      <select [(ngModel)]="unit.status">
-                        <option value="available">Available</option>
-                        <option value="sold">Sold</option>
-                      </select>
-                    </label>
-                  </span>
-                  <span>
-                    <label class="field">
-                      <span class="field-label">Price</span>
-                      <input type="number" [(ngModel)]="unit.price" min="0" />
-                    </label>
-                  </span>
-                  <span>
-                    <label class="field">
-                      <span class="field-label">Area</span>
-                      <input type="number" [(ngModel)]="unit.area" min="0" />
-                    </label>
-                  </span>
-                  <span>
-                    <label class="field">
-                      <span class="field-label">Beds</span>
-                      <input type="number" [(ngModel)]="unit.bedrooms" min="0" />
-                    </label>
-                  </span>
-                  <span>
-                    <label class="field">
-                      <span class="field-label">Baths</span>
-                      <input type="number" [(ngModel)]="unit.bathrooms" min="0" />
-                    </label>
-                  </span>
-                  <span>
-                    <label class="field">
-                      <span class="field-label">Condition</span>
-                      <input type="text" [(ngModel)]="unit.condition" placeholder="e.g. New" />
-                    </label>
-                  </span>
-                  <span>
-                    <label class="field">
-                      <span class="field-label">Description</span>
-                      <textarea [(ngModel)]="unit.description" rows="3" placeholder="Short description"></textarea>
-                    </label>
-                  </span>
-                  <span>
-                    <label class="field">
-                      <span class="field-label">Features</span>
-                      <textarea [(ngModel)]="featuresText[unit.id]" rows="3" placeholder="Comma separated (e.g. Balcony, Parking)"></textarea>
-                    </label>
-                  </span>
-                  <span class="row-actions">
-                    <button (click)="saveUnit(unit)">Save</button>
-                    <button class="danger" (click)="markUnitSold(unit)" [disabled]="unit.status === 'sold'">Mark sold</button>
-                    <button (click)="markUnitAvailable(unit)" [disabled]="unit.status === 'available'">Mark available</button>
-                  </span>
-                </div>
-              }
-            </div>
+            <div class="actions">
+              <button class="danger" (click)="markFloorSold()" [disabled]="currentFloor?.status === 'sold'">Mark floor sold</button>
+              <button class="ghost" (click)="resetData()">Reset data</button>
+              <button class="ghost" (click)="logout()">Logout</button>
             </div>
           </div>
+  
+          @if (currentFloor) {
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>{{ currentFloor.name }}</h3>
+                  <p>Status: {{ currentFloor.status | titlecase }} • Units: {{ currentFloor.units.length }}</p>
+                </div>
+              </div>
+              <div class="unit-table-wrapper">
+              <div class="unit-table">
+                <div class="unit-row unit-row--head">
+                  <span>Name</span>
+                  <span>Status</span>
+                  <span>Price</span>
+                  <span>Area (m²)</span>
+                  <span>Beds</span>
+                  <span>Baths</span>
+                  <span>Condition</span>
+                  <span>Description</span>
+                  <span>Features</span>
+                  <span>Actions</span>
+                </div>
+                @for (unit of currentFloor.units; track unit.id) {
+                  <div class="unit-row">
+                    <span>
+                      <label class="field">
+                        <span class="field-label">Name</span>
+                        <input type="text" [(ngModel)]="unit.name" />
+                      </label>
+                    </span>
+                    <span>
+                      <label class="field">
+                        <span class="field-label">Status</span>
+                        <select [(ngModel)]="unit.status">
+                          <option value="available">Available</option>
+                          <option value="sold">Sold</option>
+                        </select>
+                      </label>
+                    </span>
+                    <span>
+                      <label class="field">
+                        <span class="field-label">Price</span>
+                        <input type="number" [(ngModel)]="unit.price" min="0" />
+                      </label>
+                    </span>
+                    <span>
+                      <label class="field">
+                        <span class="field-label">Area</span>
+                        <input type="number" [(ngModel)]="unit.area" min="0" />
+                      </label>
+                    </span>
+                    <span>
+                      <label class="field">
+                        <span class="field-label">Beds</span>
+                        <input type="number" [(ngModel)]="unit.bedrooms" min="0" />
+                      </label>
+                    </span>
+                    <span>
+                      <label class="field">
+                        <span class="field-label">Baths</span>
+                        <input type="number" [(ngModel)]="unit.bathrooms" min="0" />
+                      </label>
+                    </span>
+                    <span>
+                      <label class="field">
+                        <span class="field-label">Condition</span>
+                        <input type="text" [(ngModel)]="unit.condition" placeholder="e.g. New" />
+                      </label>
+                    </span>
+                    <span>
+                      <label class="field">
+                        <span class="field-label">Description</span>
+                        <textarea [(ngModel)]="unit.description" rows="3" placeholder="Short description"></textarea>
+                      </label>
+                    </span>
+                    <span>
+                      <label class="field">
+                        <span class="field-label">Features</span>
+                        <textarea [(ngModel)]="featuresText[unit.id]" rows="3" placeholder="Comma separated (e.g. Balcony, Parking)"></textarea>
+                      </label>
+                    </span>
+                    <span class="row-actions">
+                      <button (click)="saveUnit(unit)">Save</button>
+                      <button class="danger" (click)="markUnitSold(unit)" [disabled]="unit.status === 'sold'">Mark sold</button>
+                      <button (click)="markUnitAvailable(unit)" [disabled]="unit.status === 'available'">Mark available</button>
+                    </span>
+                  </div>
+                }
+              </div>
+              </div>
+            </div>
+          } @else {
+            <p>Select a floor to manage units.</p>
+          }
         } @else {
-          <p>Select a floor to manage units.</p>
+          <app-admin-hotspot-editor></app-admin-hotspot-editor>
         }
       }
     </div>

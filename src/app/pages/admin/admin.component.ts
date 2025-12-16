@@ -8,10 +8,12 @@ import { AdminAuthService } from '../../services/admin-auth.service';
 import { PropertyService } from '../../services/property.service';
 import { Building, Floor, Project, Unit } from '../../models/property.models';
 
+import { AdminHotspotEditorComponent } from './admin-hotspot-editor/admin-hotspot-editor.component';
+
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, LayoutComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, LayoutComponent, AdminHotspotEditorComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
@@ -19,6 +21,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   isAuthenticated = false;
   authMessage = '';
+  activeTab: 'units' | 'home' = 'units'; // New toggle
   project: Project | null = null;
   selectedBuildingId: string | null = null;
   selectedFloorId: string | null = null;

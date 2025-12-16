@@ -1,0 +1,136 @@
+.editor-container {
+    padding: 2rem;
+    color: #fff;
+}
+
+.config-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.hint {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.image-wrapper {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: crosshair;
+    margin-bottom: 1.5rem;
+
+    img {
+        width: 100%;
+        display: block;
+    }
+}
+
+.hotspot-dot {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: rgba(201, 162, 39, 0.5);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        transform: translate(-50%, -50%) scale(1.2);
+        background: rgba(201, 162, 39, 0.8);
+    }
+
+    &.selected {
+        background: #22c55e;
+        border-color: #22c55e;
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
+    }
+}
+
+.editor-form {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+
+    h4 {
+        margin-bottom: 1rem;
+    }
+}
+
+.form-group {
+    margin-bottom: 1rem;
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #cbd5e1;
+        font-size: 0.9rem;
+    }
+
+    select,
+    input {
+        width: 100%;
+        padding: 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        color: #fff;
+
+        &:focus {
+            outline: none;
+            border-color: #c9a227;
+        }
+
+        option {
+            background-color: #0f172a;
+            color: #fff;
+        }
+    }
+}
+
+.btn-delete {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+        background: #dc2626;
+    }
+}
+
+.btn-save {
+    background: #c9a227;
+    color: #0f172a;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+
+    &:hover {
+        background: #d4af37;
+    }
+}
+
+@media (max-width: 1000px) {
+    .config-grid {
+        grid-template-columns: 1fr;
+    }
+}

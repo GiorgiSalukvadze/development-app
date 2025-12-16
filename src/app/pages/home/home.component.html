@@ -43,11 +43,13 @@
       </div>
       
       <div class="hero-stats">
-        @for (stat of stats; track stat.label) {
-          <div class="stat-item">
-            <span class="stat-value">{{ stat.value }}</span>
-            <span class="stat-label">{{ stat.label }}</span>
-          </div>
+        @if (stats$ | async; as stats) {
+          @for (stat of stats; track stat.id) {
+            <div class="stat-item">
+              <span class="stat-value">{{ stat.value }}</span>
+              <span class="stat-label">{{ stat.label }}</span>
+            </div>
+          }
         }
       </div>
     </div>
@@ -65,22 +67,22 @@
               </div>
             </div>
             <!-- Interactive hotspots -->
-            <div routerLink="/buildings/building-1/floor/floor-16" class="hotspot" style="top: 25%; left: 50%;">
-              <span class="hotspot-ring"></span>
-              <span class="hotspot-dot"></span>
-              <div class="hotspot-tooltip">
-                <strong>Floor 16</strong>
-                <span>17 units available</span>
-              </div>
-            </div>
-            <div routerLink="/buildings/building-1/floor/floor-13" class="hotspot" style="top: 45%; left: 45%;">
-              <span class="hotspot-ring"></span>
-              <span class="hotspot-dot"></span>
-              <div class="hotspot-tooltip">
-                <strong>Floor 13</strong>
-                <span>17 units available</span>
-              </div>
-            </div>
+            @if (hotspots$ | async; as hotspots) {
+              @for (hotspot of hotspots; track hotspot.id) {
+                <div 
+                  [routerLink]="['/buildings/building-1/floor', hotspot.floorId]" 
+                  class="hotspot" 
+                  [style.top.%]="hotspot.y" 
+                  [style.left.%]="hotspot.x">
+                  <span class="hotspot-ring"></span>
+                  <span class="hotspot-dot"></span>
+                  <div class="hotspot-tooltip">
+                    <strong>{{ hotspot.title || getFloorName(hotspot.floorId) }}</strong>
+                    <span>{{ hotspot.details || getAvailableUnitsCount(hotspot.floorId) + ' units available' }}</span>
+                  </div>
+                </div>
+              }
+            }
           </div>
           
           <div class="showcase-info">

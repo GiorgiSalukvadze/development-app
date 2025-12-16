@@ -1,0 +1,76 @@
+<div class="editor-container">
+  <h2>Home Page Configuration</h2>
+
+  <div class="config-grid">
+    <!-- Hotspot Editor -->
+    <div class="card hotspot-section">
+      <h3>Interactive Building Hotspots</h3>
+      <p class="hint">Click on the image to add a hotspot. Click a dot to edit it.</p>
+      
+      <div class="image-wrapper" (click)="addHotspot($event)">
+        <img [src]="buildingImage" alt="Building">
+        @for (hotspot of hotspots; track hotspot.id) {
+          <div 
+            class="hotspot-dot"
+            [style.left.%]="hotspot.x"
+            [style.top.%]="hotspot.y"
+            [class.selected]="selectedHotspot?.id === hotspot.id"
+            (click)="selectHotspot(hotspot, $event)">
+          </div>
+        }
+      </div>
+
+      @if (selectedHotspot) {
+        <div class="editor-form">
+          <h4>Edit Hotspot</h4>
+          <div class="form-group">
+            <label>Link to Floor</label>
+            <select [ngModel]="selectedHotspot.floorId" (ngModelChange)="updateHotspotField('floorId', $event)">
+              @for (floor of floors; track floor.id) {
+                <option [value]="floor.id">{{ floor.name }}</option>
+              }
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Custom Title (Optional)</label>
+            <input 
+              type="text" 
+              [ngModel]="selectedHotspot.title" 
+              (ngModelChange)="updateHotspotField('title', $event)"
+              placeholder="e.g. Penthouse Suite"
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Custom Details (Optional)</label>
+            <input 
+              type="text" 
+              [ngModel]="selectedHotspot.details" 
+              (ngModelChange)="updateHotspotField('details', $event)"
+              placeholder="e.g. 5 Units Remaining"
+            >
+          </div>
+
+          <button class="btn-delete" (click)="deleteSelectedHotspot()">Delete Hotspot</button>
+        </div>
+      }
+    </div>
+
+    <!-- Stats Editor -->
+    <div class="card stats-section">
+      <h3>Key Statistics</h3>
+      <div class="stats-list">
+        @for (stat of stats; track stat.id) {
+          <div class="stat-item">
+            <div class="form-group">
+              <label>{{ stat.label }}</label>
+              <input [(ngModel)]="stat.value" (change)="updateStats()" placeholder="Value">
+            </div>
+          </div>
+        }
+      </div>
+      <button class="btn-save" (click)="updateStats()">Save Stats</button>
+    </div>
+  </div>
+</div>
