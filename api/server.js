@@ -14,6 +14,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
+  next();
+});
+
 const dbPath = path.join(__dirname, 'data.sqlite');
 const seedPath = path.join(__dirname, 'seed', 'project.json');
 
@@ -31,7 +36,15 @@ function loadProject(callback) {
   db.get('SELECT data FROM project WHERE id = ?', ['project-1'], (err, row) => {
     if (err) return callback(err);
     if (row && row.data) {
-      return callback(null, JSON.parse(row.data));
+      const project = JSON.parse(row.data);
+      // Migration: Ensure hotspots exist if missing
+      if (project.buildings && project.buildings[0] && !project.buildings[0].hotspots) {
+        console.log('Migrating: Adding missing hotspots field from seed/default');
+        project.buildings[0].hotspots = [];
+        // Optional: Save back to DB immediately to persist migration
+        // saveProject(project, () => {}); 
+      }
+      return callback(null, project);
     }
     const seed = loadSeed();
     db.run('INSERT OR REPLACE INTO project (id, data) VALUES (?, ?)', ['project-1', JSON.stringify(seed)], () => {
@@ -159,6 +172,38 @@ function findFloor(project, floorId) {
 function updateFloorStatus(floor) {
   floor.status = floor.units.every(u => u.status === 'sold') ? 'sold' : 'available';
 }
+
+// Hotspots endpoints
+app.get('/hotspots', (req, res) => {
+  loadProject((err, project) => {
+    if (err) return res.status(500).json({ error: 'Failed to load project' });
+    const hotspots = project.buildings[0]?.hotspots || [];
+    res.json(hotspots);
+  });
+});
+
+app.post('/hotspots', authenticate, (req, res) => {
+  const hotspots = req.body;
+  if (!Array.isArray(hotspots)) {
+    return res.status(400).json({ error: 'Invalid body, expected array of hotspots' });
+  }
+
+  loadProject((err, project) => {
+    if (err || !project) return res.status(500).json({ error: 'Failed to load project' });
+    
+    // Ensure building exists
+    if (!project.buildings || project.buildings.length === 0) {
+      return res.status(404).json({ error: 'No buildings found' });
+    }
+
+    project.buildings[0].hotspots = hotspots;
+
+    saveProject(project, saveErr => {
+      if (saveErr) return res.status(500).json({ error: 'Failed to save hotspots' });
+      res.json(hotspots);
+    });
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`API running on http://localhost:${PORT}`);

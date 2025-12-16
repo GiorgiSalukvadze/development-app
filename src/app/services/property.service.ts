@@ -3936,12 +3936,7 @@ export class PropertyService {
 
   // Public methods
   getProject(): Observable<Project> {
-    if (this.useApi) {
-      return this.http.get<Project>(`${this.apiUrl}/project`).pipe(
-        tap(project => this.project$.next(project)),
-        catchError(() => of(this.project$.value))
-      );
-    }
+    // Return the subject so components get updates when refreshProjectFromApi is called
     return this.project$.asObservable();
   }
 
@@ -3998,7 +3993,7 @@ export class PropertyService {
   // Admin mutations
   markUnitSold(buildingId: string, floorId: string, unitId: string): Observable<Unit | undefined> {
     if (this.useApi) {
-      return this.http.patch<Unit>(`${this.apiUrl}/buildings/${buildingId}/floors/${floorId}/units/${unitId}/status`, { status: 'sold' }, { headers: this.authHeaders, responseType: 'json' }).pipe(
+      return this.http.patch<Unit>(`${this.apiUrl}/units/${unitId}/status`, { status: 'sold' }, { headers: this.authHeaders, responseType: 'json' }).pipe(
         tap(() => this.refreshProjectFromApi()),
         catchError(() => of(undefined))
       );
@@ -4018,7 +4013,7 @@ export class PropertyService {
 
   markUnitAvailable(buildingId: string, floorId: string, unitId: string): Observable<Unit | undefined> {
     if (this.useApi) {
-      return this.http.patch<Unit>(`${this.apiUrl}/buildings/${buildingId}/floors/${floorId}/units/${unitId}/status`, { status: 'available' }, { headers: this.authHeaders, responseType: 'json' }).pipe(
+      return this.http.patch<Unit>(`${this.apiUrl}/units/${unitId}/status`, { status: 'available' }, { headers: this.authHeaders, responseType: 'json' }).pipe(
         tap(() => this.refreshProjectFromApi()),
         catchError(() => of(undefined))
       );
@@ -4038,7 +4033,7 @@ export class PropertyService {
 
   markFloorSold(buildingId: string, floorId: string): Observable<Floor | undefined> {
     if (this.useApi) {
-      return this.http.patch<Floor>(`${this.apiUrl}/buildings/${buildingId}/floors/${floorId}/status`, { status: 'sold' }, { headers: this.authHeaders, responseType: 'json' }).pipe(
+      return this.http.patch<Floor>(`${this.apiUrl}/floors/${floorId}/status`, { status: 'sold' }, { headers: this.authHeaders, responseType: 'json' }).pipe(
         tap(() => this.refreshProjectFromApi()),
         catchError(() => of(undefined))
       );
@@ -4060,7 +4055,7 @@ export class PropertyService {
     changes: Partial<Pick<Unit, 'name' | 'price' | 'status' | 'condition' | 'description' | 'area' | 'bedrooms' | 'bathrooms' | 'features'>>
   ): Observable<Unit | undefined> {
     if (this.useApi) {
-      return this.http.patch<Unit>(`${this.apiUrl}/buildings/${buildingId}/floors/${floorId}/units/${unitId}`, changes, { headers: this.authHeaders, responseType: 'json' }).pipe(
+      return this.http.patch<Unit>(`${this.apiUrl}/units/${unitId}`, changes, { headers: this.authHeaders, responseType: 'json' }).pipe(
         tap(() => this.refreshProjectFromApi()),
         catchError(() => of(undefined))
       );
@@ -4120,7 +4115,18 @@ export class PropertyService {
   private refreshProjectFromApi(): void {
     this.http.get<Project>(`${this.apiUrl}/project`, { responseType: 'json' })
       .pipe(catchError(() => of(this.project$.value)))
-      .subscribe(project => this.project$.next(project));
+      .subscribe(project => {
+        this.project$.next(project);
+
+        // Refresh selected items if they exist
+        const currentFloor = this.selectedFloor$.value;
+        if (currentFloor) {
+          const updatedFloor = this.findFloor(project, currentFloor.buildingId, currentFloor.id);
+          if (updatedFloor) {
+            this.selectedFloor$.next(updatedFloor);
+          }
+        }
+      });
   }
 
   private findFloor(project: Project, buildingId: string, floorId: string): Floor | undefined {
@@ -4165,8 +4171,11 @@ export class PropertyService {
 
 
   private refreshHotspots() {
-    // Mock API call simulation
-    // In real app: this.http.get<BuildingHotspot[]>...
+    if (this.useApi) {
+      this.http.get<BuildingHotspot[]>(`${this.apiUrl}/hotspots`)
+        .pipe(catchError(() => of([])))
+        .subscribe(hotspots => this.hotspotsSubject.next(hotspots));
+    }
   }
 
   getHotspots(): Observable<BuildingHotspot[]> {
@@ -4177,6 +4186,15 @@ export class PropertyService {
     this.hotspotsSubject.next(hotspots);
     if (!this.useApi) {
       localStorage.setItem('app-hotspots', JSON.stringify(hotspots));
+    } else {
+      this.http.post<BuildingHotspot[]>(`${this.apiUrl}/hotspots`, hotspots, { headers: this.authHeaders })
+        .subscribe({
+          next: () => console.log('Hotspots saved successfully'),
+          error: (err) => {
+            console.error('Failed to save hotspots', err);
+            alert(`Failed to save hotspots: ${err.message || 'Unknown error'}. Check console for details.`);
+          }
+        });
     }
   }
 
