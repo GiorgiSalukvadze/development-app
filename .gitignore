@@ -8,6 +8,18 @@
 
 # Node
 /node_modules
+/api/node_modules
+/backend/node_modules
+npm-debug.log
+yarn-error.log
+
+# Backend build / logs
+/backend/dist
+/backend/.nest-compiler
+/backend/*.log
+
+# API sqlite DB (if you don't want it in git)
+/api/data.sqlite
 npm-debug.log
 yarn-error.log
 

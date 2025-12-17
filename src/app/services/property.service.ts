@@ -24,7 +24,7 @@ export interface HomeStat {
 })
 export class PropertyService {
   private useApi = true;
-  private apiUrl = 'http://localhost:4000';
+  private apiUrl = 'http://localhost:3000';
   private get authHeaders(): HttpHeaders {
     const token = localStorage.getItem('admin-session-token');
     return new HttpHeaders(token ? { Authorization: `Bearer ${token}` } : {});
