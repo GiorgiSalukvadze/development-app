@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { LayoutComponent } from '../../../../components/layout/layout.component';
+import { AdminLayoutComponent } from '../../../../components/admin-layout/admin-layout.component';
 import { FloorViewComponent } from '../../../../components/floor-view/floor-view.component';
 import { AdminSalesLeadModalComponent } from '../sales-lead-modal/sales-lead-modal.component';
 import { PropertyService } from '../../../../services/property.service';
@@ -11,9 +11,9 @@ import { Building, Floor, Unit, SalesLead } from '../../../../models/property.mo
 @Component({
   selector: 'app-admin-sales-floor-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, LayoutComponent, FloorViewComponent, AdminSalesLeadModalComponent],
+  imports: [CommonModule, RouterModule, FormsModule, AdminLayoutComponent, FloorViewComponent, AdminSalesLeadModalComponent],
   template: `
-    <app-layout>
+    <app-admin-layout>
       <div class="sales-mode-header">
         <div class="container">
           <div class="header-content">
@@ -61,7 +61,7 @@ import { Building, Floor, Unit, SalesLead } from '../../../../models/property.mo
           (markAsAvailable)="onMarkAsAvailable()">
         </app-sales-lead-modal>
       }
-    </app-layout>
+    </app-admin-layout>
   `,
   styles: [`
     .sales-mode-header {

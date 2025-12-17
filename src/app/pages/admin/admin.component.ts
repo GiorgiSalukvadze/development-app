@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { LayoutComponent } from '../../components/layout/layout.component';
+import { AdminLayoutComponent } from '../../components/admin-layout/admin-layout.component';
 import { AdminAuthService } from '../../services/admin-auth.service';
 import { PropertyService } from '../../services/property.service';
 import { Building, Floor, Project, Unit } from '../../models/property.models';
@@ -14,14 +13,11 @@ import { AdminHotspotEditorComponent } from './admin-hotspot-editor/admin-hotspo
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, LayoutComponent, AdminHotspotEditorComponent],
+  imports: [CommonModule, RouterModule, FormsModule, AdminLayoutComponent, AdminHotspotEditorComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
 export class AdminComponent implements OnInit, OnDestroy {
-  loginForm: FormGroup;
-  isAuthenticated = false;
-  authMessage = '';
   activeTab: 'units' | 'home' = 'units'; // New toggle
   project: Project | null = null;
   selectedBuildingId: string | null = null;
@@ -30,21 +26,13 @@ export class AdminComponent implements OnInit, OnDestroy {
   private subs: Subscription[] = [];
 
   constructor(
-    private fb: FormBuilder,
     private authService: AdminAuthService,
-    private propertyService: PropertyService
-  ) {
-    this.loginForm = this.fb.group({
-      username: ['admin', Validators.required],
-      password: ['admin123', Validators.required]
-    });
-  }
+    private propertyService: PropertyService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.subs.push(
-      this.authService.isAuthenticated().subscribe(isAuthed => {
-        this.isAuthenticated = isAuthed;
-      }),
       this.propertyService.getProject().subscribe(project => {
         this.project = project;
         if (!this.selectedBuildingId && project?.buildings.length) {
@@ -79,20 +67,6 @@ export class AdminComponent implements OnInit, OnDestroy {
     return this.currentBuilding?.floors.find(f => f.id === this.selectedFloorId);
   }
 
-  login(): void {
-    if (this.loginForm.invalid) {
-      this.authMessage = 'Please enter credentials.';
-      return;
-    }
-    const { username, password } = this.loginForm.value;
-    this.authService.login(username, password).subscribe(ok => {
-      this.authMessage = ok ? 'Logged in.' : 'Invalid credentials.';
-    });
-  }
-
-  logout(): void {
-    this.authService.logout();
-  }
 
   onBuildingChange(id: string): void {
     this.selectedBuildingId = id;
