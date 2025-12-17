@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { PropertyService, BuildingHotspot, HomeStat } from '../../../services/property.service';
+import { PropertyService, BuildingHotspot } from '../../../services/property.service';
 import { Floor } from '../../../models/property.models';
 
 @Component({
@@ -14,7 +14,6 @@ import { Floor } from '../../../models/property.models';
 export class AdminHotspotEditorComponent implements OnInit {
     hotspots: BuildingHotspot[] = [];
     floors: Floor[] = [];
-    stats: HomeStat[] = [];
 
     selectedHotspot: BuildingHotspot | null = null;
     buildingImage = 'assets/town-a.jpeg';
@@ -23,7 +22,6 @@ export class AdminHotspotEditorComponent implements OnInit {
 
     ngOnInit() {
         this.propertyService.getHotspots().subscribe(h => this.hotspots = h);
-        this.propertyService.getStats().subscribe(s => this.stats = s);
 
         // Get floors from the first building for the dropdown
         this.propertyService.getProject().subscribe(project => {
@@ -72,8 +70,5 @@ export class AdminHotspotEditorComponent implements OnInit {
         this.selectedHotspot = null;
     }
 
-    updateStats() {
-        this.propertyService.updateStats(this.stats);
-        alert('Stats updated!');
-    }
+
 }

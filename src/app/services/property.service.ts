@@ -4074,6 +4074,15 @@ export class PropertyService {
     return of(updatedUnit);
   }
 
+  updateUnitLeads(
+    buildingId: string,
+    floorId: string,
+    unitId: string,
+    leads: any[]
+  ): Observable<Unit | undefined> {
+    return this.updateUnitDetails(buildingId, floorId, unitId, { salesLeads: leads } as any);
+  }
+
   resetProject(): void {
     if (this.useApi) {
       this.http.post<Project>(`${this.apiUrl}/admin/reset`, {}, { headers: this.authHeaders, responseType: 'json' }).pipe(

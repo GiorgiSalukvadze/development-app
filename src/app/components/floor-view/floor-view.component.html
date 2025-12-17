@@ -62,28 +62,49 @@
       >
         <h3>{{ hoveredUnit.name }}</h3>
         <div class="tooltip-details">
-          <div class="detail-row">
-            <span class="label">Status:</span>
-            <span class="value status-badge" [class]="hoveredUnit.status">
-              {{ hoveredUnit.status | titlecase }}
-            </span>
-          </div>
-          <div class="detail-row">
-            <span class="label">Area:</span>
-            <span class="value">{{ hoveredUnit.area }} m²</span>
-          </div>
-          <div class="detail-row">
-            <span class="label">Bedrooms:</span>
-            <span class="value">{{ hoveredUnit.bedrooms }}</span>
-          </div>
-          <div class="detail-row">
-            <span class="label">Bathrooms:</span>
-            <span class="value">{{ hoveredUnit.bathrooms }}</span>
-          </div>
-          <div class="detail-row price">
-            <span class="label">Price:</span>
-            <span class="value">{{ formatPrice(hoveredUnit.price) }}</span>
-          </div>
+          @if (showLeads) {
+             <div class="detail-row">
+               <span class="label">Total Leads:</span>
+               <span class="value">{{ getLeadCount(hoveredUnit) }}</span>
+             </div>
+             @if (getLeadCount(hoveredUnit) > 0) {
+                 <div class="detail-row">
+                   <span class="label">High Interest:</span>
+                   <span class="value" style="color: #ef4444">{{ getInterestCount(hoveredUnit, 'high') }}</span>
+                 </div>
+                 <div class="detail-row">
+                   <span class="label">Medium Interest:</span>
+                   <span class="value" style="color: #eab308">{{ getInterestCount(hoveredUnit, 'medium') }}</span>
+                 </div>
+                 <div class="detail-row">
+                   <span class="label">Low Interest:</span>
+                   <span class="value" style="color: #22c55e">{{ getInterestCount(hoveredUnit, 'low') }}</span>
+                 </div>
+             }
+          } @else {
+              <div class="detail-row">
+                <span class="label">Status:</span>
+                <span class="value status-badge" [class]="hoveredUnit.status">
+                  {{ hoveredUnit.status | titlecase }}
+                </span>
+              </div>
+              <div class="detail-row">
+                <span class="label">Area:</span>
+                <span class="value">{{ hoveredUnit.area }} m²</span>
+              </div>
+              <div class="detail-row">
+                <span class="label">Bedrooms:</span>
+                <span class="value">{{ hoveredUnit.bedrooms }}</span>
+              </div>
+              <div class="detail-row">
+                <span class="label">Bathrooms:</span>
+                <span class="value">{{ hoveredUnit.bathrooms }}</span>
+              </div>
+              <div class="detail-row price">
+                <span class="label">Price:</span>
+                <span class="value">{{ formatPrice(hoveredUnit.price) }}</span>
+              </div>
+          }
         </div>
         <span class="click-hint" (click)="onUnitClick(hoveredUnit, $event)">Click for more details</span>
       </div>

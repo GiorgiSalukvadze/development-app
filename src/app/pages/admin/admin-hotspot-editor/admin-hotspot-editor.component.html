@@ -58,19 +58,6 @@
     </div>
 
     <!-- Stats Editor -->
-    <div class="card stats-section">
-      <h3>Key Statistics</h3>
-      <div class="stats-list">
-        @for (stat of stats; track stat.id) {
-          <div class="stat-item">
-            <div class="form-group">
-              <label>{{ stat.label }}</label>
-              <input [(ngModel)]="stat.value" (change)="updateStats()" placeholder="Value">
-            </div>
-          </div>
-        }
-      </div>
-      <button class="btn-save" (click)="updateStats()">Save Stats</button>
-    </div>
+
   </div>
 </div>

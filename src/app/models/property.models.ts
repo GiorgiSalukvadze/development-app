@@ -2,6 +2,13 @@
 
 export type UnitStatus = 'available' | 'sold';
 
+export interface SalesLead {
+  name: string;
+  phone: string;
+  notes: string;
+  interest: 'high' | 'medium' | 'low';
+}
+
 export interface Unit {
   id: string;
   name: string;
@@ -16,6 +23,7 @@ export interface Unit {
   description?: string;
   features?: string[];
   images?: string[];
+  salesLeads?: SalesLead[];
 }
 
 export interface Floor {

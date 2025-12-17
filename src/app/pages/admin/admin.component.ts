@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -13,7 +14,7 @@ import { AdminHotspotEditorComponent } from './admin-hotspot-editor/admin-hotspo
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, LayoutComponent, AdminHotspotEditorComponent],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, LayoutComponent, AdminHotspotEditorComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })

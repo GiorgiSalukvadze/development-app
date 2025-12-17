@@ -13,5 +13,9 @@ export const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'editor', component: PolygonEditorComponent },
   { path: 'admin', component: AdminComponent },
+  {
+    path: 'admin/sales/buildings/:buildingId/floor/:floorId',
+    loadComponent: () => import('./pages/admin/sales/sales-floor-page/sales-floor-page.component').then(m => m.AdminSalesFloorPageComponent)
+  },
   { path: '**', redirectTo: '' }
 ];

@@ -4,9 +4,10 @@
 }
 
 .config-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
+    /* Made single column after removing stats panel */
+    display: block;
+    max-width: 600px;
+    /* Reduced from 1000px as per user request */
     margin-top: 1.5rem;
 }
 
