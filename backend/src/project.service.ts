@@ -15,15 +15,8 @@ export class ProjectService {
   ) {}
 
   private loadSeed(): any {
-    // Reuse existing seed file from the old Express api
-    const seedPath = join(
-      __dirname,
-      '..',
-      '..',
-      'api',
-      'seed',
-      'project.json',
-    );
+    // Load project.json from the workspace root
+    const seedPath = join(__dirname, '..', '..', 'project.json');
     const raw = readFileSync(seedPath, 'utf8');
     return JSON.parse(raw);
   }
