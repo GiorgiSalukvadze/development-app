@@ -13,6 +13,7 @@ import { FilterByStatusPipe } from '../../pipes/filter-by-status.pipe';
 })
 export class BuildingViewComponent implements OnInit {
   @Input() building!: Building;
+  @Input() showLeads = false;
   @Output() floorSelected = new EventEmitter<Floor>();
 
   hoveredFloor: Floor | null = null;
@@ -24,7 +25,7 @@ export class BuildingViewComponent implements OnInit {
     total: 0
   };
 
-  constructor(private propertyService: PropertyService) {}
+  constructor(private propertyService: PropertyService) { }
 
   ngOnInit(): void {
     if (this.building) {
@@ -32,10 +33,23 @@ export class BuildingViewComponent implements OnInit {
     }
   }
 
+  getFloorLeadCount(floor: Floor): number {
+    if (!floor.units) return 0;
+    return floor.units.reduce((acc, unit) => acc + (unit.salesLeads ? unit.salesLeads.length : 0), 0);
+  }
+
+  getFloorInterestCount(floor: Floor, interest: 'high' | 'medium' | 'low'): number {
+    if (!floor.units) return 0;
+    return floor.units.reduce((acc, unit) => {
+      const count = unit.salesLeads ? unit.salesLeads.filter(l => l.interest === interest).length : 0;
+      return acc + count;
+    }, 0);
+  }
+
   onFloorClick(floor: Floor, event: MouseEvent): void {
     // Check if mobile/touch device
     const isMobile = window.innerWidth <= 600;
-    
+
     if (isMobile) {
       // First tap: show info
       if (this.tappedFloor?.id !== floor?.id) {
@@ -113,10 +127,10 @@ export class BuildingViewComponent implements OnInit {
       const [x, y] = p.split(',').map(Number);
       return { x, y };
     });
-    
+
     const centerX = points.reduce((sum, p) => sum + p.x, 0) / points.length;
     const centerY = points.reduce((sum, p) => sum + p.y, 0) / points.length;
-    
+
     return { x: centerX, y: centerY };
   }
 }

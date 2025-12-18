@@ -58,16 +58,29 @@
         [style.top.px]="mousePosition.y - 60"
       >
         <h3>{{ hoveredFloor.name }}</h3>
-        <p class="status" [class]="hoveredFloor.status">
-          Status: {{ hoveredFloor.status | titlecase }}
-        </p>
-        <p class="units-info">
-          {{ hoveredFloor.units.length }} Units
-        </p>
-        <p class="available-count">
-          {{ hoveredFloor.units | filterByStatus:'available' }} Available
-        </p>
-        <span class="click-hint">Click to view floor plan</span>
+        
+        @if (showLeads) {
+            <div class="tooltip-stats">
+              <p class="stat-row"><strong>Total Leads:</strong> {{ getFloorLeadCount(hoveredFloor) }}</p>
+              @if (getFloorLeadCount(hoveredFloor) > 0) {
+                 <p class="stat-row high">High Interest: {{ getFloorInterestCount(hoveredFloor, 'high') }}</p>
+                 <p class="stat-row medium">Medium Interest: {{ getFloorInterestCount(hoveredFloor, 'medium') }}</p>
+                 <p class="stat-row low">Low Interest: {{ getFloorInterestCount(hoveredFloor, 'low') }}</p>
+              }
+              <span class="click-hint">Click to manage leads</span>
+            </div>
+        } @else {
+            <p class="status" [class]="hoveredFloor.status">
+              Status: {{ hoveredFloor.status | titlecase }}
+            </p>
+            <p class="units-info">
+              {{ hoveredFloor.units.length }} Units
+            </p>
+            <p class="available-count">
+              {{ hoveredFloor.units | filterByStatus:'available' }} Available
+            </p>
+            <span class="click-hint">Click to view floor plan</span>
+        }
       </div>
     }
   </div>

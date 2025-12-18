@@ -1,23 +1,31 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, tap, catchError, of, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminAuthService {
   private readonly tokenKey = 'admin-session-token';
-  private readonly defaultUser = { username: 'admin', password: 'admin123' };
+  private readonly apiUrl = 'http://localhost:4000/auth/login';
   private isAuthed$ = new BehaviorSubject<boolean>(this.hasToken());
 
+  constructor(private http: HttpClient) { }
+
   login(username: string, password: string): Observable<boolean> {
-    const ok = username === this.defaultUser.username && password === this.defaultUser.password;
-    if (ok) {
-      localStorage.setItem(this.tokenKey, 'logged-in');
-      this.isAuthed$.next(true);
-    } else {
-      this.logout();
-    }
-    return of(ok);
+    return this.http.post<{ token: string }>(this.apiUrl, { username, password }).pipe(
+      tap(response => {
+        if (response.token) {
+          localStorage.setItem(this.tokenKey, response.token);
+          this.isAuthed$.next(true);
+        }
+      }),
+      map(() => true),
+      catchError(() => {
+        this.logout();
+        return of(false);
+      })
+    );
   }
 
   logout(): void {

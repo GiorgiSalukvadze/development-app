@@ -14,6 +14,10 @@ export const routes: Routes = [
   { path: 'editor', component: PolygonEditorComponent },
   { path: 'admin', component: AdminComponent },
   {
+    path: 'admin/sales/buildings/:buildingId',
+    loadComponent: () => import('./pages/admin/sales/sales-building-page/sales-building-page.component').then(m => m.AdminSalesBuildingPageComponent)
+  },
+  {
     path: 'admin/sales/buildings/:buildingId/floor/:floorId',
     loadComponent: () => import('./pages/admin/sales/sales-floor-page/sales-floor-page.component').then(m => m.AdminSalesFloorPageComponent)
   },
