@@ -7,10 +7,10 @@ import { PropertyService } from '../../../../services/property.service';
 import { Building, Floor } from '../../../../models/property.models';
 
 @Component({
-    selector: 'app-admin-sales-building-page',
-    standalone: true,
-    imports: [CommonModule, RouterModule, LayoutComponent, BuildingViewComponent],
-    template: `
+  selector: 'app-admin-sales-building-page',
+  standalone: true,
+  imports: [CommonModule, RouterModule, LayoutComponent, BuildingViewComponent],
+  template: `
     <app-layout>
       <div class="sales-mode-header">
         <div class="container">
@@ -40,7 +40,7 @@ import { Building, Floor } from '../../../../models/property.models';
       </div>
     </app-layout>
   `,
-    styles: [`
+  styles: [`
     .sales-mode-header {
       background: #1e293b;
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -83,37 +83,41 @@ import { Building, Floor } from '../../../../models/property.models';
   `]
 })
 export class AdminSalesBuildingPageComponent implements OnInit {
-    building: Building | null = null;
-    isLoading = true;
-    buildingId = '';
+  building: Building | null = null;
+  isLoading = true;
+  buildingId = '';
 
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private propertyService: PropertyService
-    ) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private propertyService: PropertyService
+  ) { }
 
-    ngOnInit() {
-        this.route.params.subscribe(params => {
-            this.buildingId = params['buildingId'];
-            this.loadData();
-        });
-    }
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.buildingId = params['buildingId'];
+      this.loadData();
+    });
+  }
 
-    loadData() {
-        this.isLoading = true;
-        this.propertyService.getBuilding(this.buildingId).subscribe(b => {
-            this.building = b || null;
-            this.isLoading = false;
-        });
-    }
+  loadData() {
+    this.isLoading = true;
+    this.propertyService.getProject().subscribe(project => {
+      if (project) {
+        this.building = project.buildings.find(b => b.id === this.buildingId) || null;
+      }
+      if (this.building) {
+        this.isLoading = false;
+      }
+    });
+  }
 
-    onFloorSelected(floor: Floor) {
-        // Navigate to the floor sales view we created earlier
-        this.router.navigate(['/admin/sales/buildings', this.buildingId, 'floor', floor.id]);
-    }
+  onFloorSelected(floor: Floor) {
+    // Navigate to the floor sales view we created earlier
+    this.router.navigate(['/admin/sales/buildings', this.buildingId, 'floor', floor.id]);
+  }
 
-    onBack() {
-        this.router.navigate(['/admin']);
-    }
+  onBack() {
+    this.router.navigate(['/admin']);
+  }
 }

@@ -8,18 +8,37 @@
 
   <!-- Stats Bar -->
   <div class="stats-bar">
-    <div class="stat available">
-      <span class="stat-value">{{ stats.available }}</span>
-      <span class="stat-label">Available</span>
-    </div>
-    <div class="stat sold">
-      <span class="stat-value">{{ stats.sold }}</span>
-      <span class="stat-label">Sold</span>
-    </div>
-    <div class="stat total">
-      <span class="stat-value">{{ stats.total }}</span>
-      <span class="stat-label">Total Units</span>
-    </div>
+    @if (showLeads) {
+        <div class="stat" style="background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2);">
+          <span class="stat-value">{{ leadStats.total }}</span>
+          <span class="stat-label">Total Leads</span>
+        </div>
+        <div class="stat high">
+          <span class="stat-value">{{ leadStats.high }}</span>
+          <span class="stat-label">High Interest</span>
+        </div>
+        <div class="stat medium">
+          <span class="stat-value">{{ leadStats.medium }}</span>
+          <span class="stat-label">Medium Interest</span>
+        </div>
+        <div class="stat low">
+          <span class="stat-value">{{ leadStats.low }}</span>
+          <span class="stat-label">Low Interest</span>
+        </div>
+    } @else {
+        <div class="stat available">
+          <span class="stat-value">{{ stats.available }}</span>
+          <span class="stat-label">Available</span>
+        </div>
+        <div class="stat sold">
+          <span class="stat-value">{{ stats.sold }}</span>
+          <span class="stat-label">Sold</span>
+        </div>
+        <div class="stat total">
+          <span class="stat-value">{{ stats.total }}</span>
+          <span class="stat-label">Total Units</span>
+        </div>
+    }
   </div>
 
   <!-- Interactive Building SVG -->

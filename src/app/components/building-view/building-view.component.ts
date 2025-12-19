@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Building, Floor } from '../../models/property.models';
 import { PropertyService } from '../../services/property.service';
@@ -11,7 +11,7 @@ import { FilterByStatusPipe } from '../../pipes/filter-by-status.pipe';
   templateUrl: './building-view.component.html',
   styleUrl: './building-view.component.scss'
 })
-export class BuildingViewComponent implements OnInit {
+export class BuildingViewComponent implements OnInit, OnChanges {
   @Input() building!: Building;
   @Input() showLeads = false;
   @Output() floorSelected = new EventEmitter<Floor>();
@@ -24,13 +24,42 @@ export class BuildingViewComponent implements OnInit {
     sold: 0,
     total: 0
   };
+  leadStats: { total: number; high: number; medium: number; low: number } = {
+    total: 0, high: 0, medium: 0, low: 0
+  };
 
   constructor(private propertyService: PropertyService) { }
 
   ngOnInit(): void {
+    this.updateStats();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['building'] && !changes['building'].firstChange) {
+      this.updateStats();
+    }
+  }
+
+  private updateStats(): void {
     if (this.building) {
       this.stats = this.propertyService.getBuildingStats(this.building);
+      this.calculateLeadStats();
     }
+  }
+
+  private calculateLeadStats(): void {
+    let total = 0, high = 0, medium = 0, low = 0;
+    this.building.floors.forEach(floor => {
+      floor.units.forEach(unit => {
+        if (unit.salesLeads) {
+          total += unit.salesLeads.length;
+          high += unit.salesLeads.filter(l => l.interest === 'high').length;
+          medium += unit.salesLeads.filter(l => l.interest === 'medium').length;
+          low += unit.salesLeads.filter(l => l.interest === 'low').length;
+        }
+      });
+    });
+    this.leadStats = { total, high, medium, low };
   }
 
   getFloorLeadCount(floor: Floor): number {
