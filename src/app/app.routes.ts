@@ -15,11 +15,15 @@ export const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   {
     path: 'admin/sales/buildings/:buildingId',
-    loadComponent: () => import('./pages/admin/sales/sales-building-page/sales-building-page.component').then(m => m.AdminSalesBuildingPageComponent)
+    loadComponent: () => import('./pages/admin/sales/sales-building-page/sales-building-page.component').then(m => m.SalesBuildingPageComponent)
   },
   {
     path: 'admin/sales/buildings/:buildingId/floor/:floorId',
     loadComponent: () => import('./pages/admin/sales/sales-floor-page/sales-floor-page.component').then(m => m.AdminSalesFloorPageComponent)
+  },
+  {
+    path: 'admin/sales/leads',
+    loadComponent: () => import('./pages/admin/sales/leads-page/leads-page.component').then(m => m.LeadsPageComponent)
   },
   { path: '**', redirectTo: '' }
 ];

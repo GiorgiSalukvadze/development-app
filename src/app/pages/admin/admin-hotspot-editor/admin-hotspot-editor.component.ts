@@ -21,7 +21,11 @@ export class AdminHotspotEditorComponent implements OnInit {
     constructor(private propertyService: PropertyService) { }
 
     ngOnInit() {
-        this.propertyService.getHotspots().subscribe(h => this.hotspots = h);
+        this.propertyService.getHotspots()
+            .subscribe(h => {
+                console.log('Component received hotspots update:', h);
+                this.hotspots = h;
+            });
 
         // Get floors from the first building for the dropdown
         this.propertyService.getProject().subscribe(project => {
@@ -38,7 +42,7 @@ export class AdminHotspotEditorComponent implements OnInit {
 
         const newHotspot: BuildingHotspot = {
             id: 'h-' + Date.now(),
-            floorId: this.floors[0]?.id || '',
+            floorId: this.floors[0]?.id || 'floor-1', // Fallback to floor-1 if loading fails
             x,
             y
         };

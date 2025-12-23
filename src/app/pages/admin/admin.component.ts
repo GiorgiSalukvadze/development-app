@@ -54,12 +54,13 @@ export class AdminComponent implements OnInit, OnDestroy {
           const firstFloor = this.currentBuilding?.floors[0];
           this.selectedFloorId = firstFloor?.id ?? null;
         }
-        // hydrate editable feature text helpers
-        this.featuresText = {};
+        // Only hydrate if empty or missing, do not overwrite user edits in progress
         project?.buildings.forEach(b =>
           b.floors.forEach(f =>
             f.units.forEach(u => {
-              this.featuresText[u.id] = (u.features || []).join(', ');
+              if (this.featuresText[u.id] === undefined) {
+                this.featuresText[u.id] = (u.features || []).join(', ');
+              }
             })
           )
         );

@@ -34,7 +34,7 @@
       <!-- SVG overlay with unit polygons - viewBox matches original image dimensions -->
       <svg [attr.viewBox]="floor.floorPlanViewBox" class="floor-plan-svg-overlay" preserveAspectRatio="xMidYMid meet">
         <!-- Interactive unit polygons from real data -->
-        @for (unit of floor.units; track unit.id) {
+        @for (unit of displayedUnits; track unit.id) {
           <polygon
             [attr.points]="unit.polygonPoints"
             [attr.fill]="hoveredUnit?.id === unit.id ? getUnitHoverColor(unit) : getUnitColor(unit)"

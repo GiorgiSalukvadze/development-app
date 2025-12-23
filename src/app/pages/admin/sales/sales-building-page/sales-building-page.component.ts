@@ -16,6 +16,7 @@ import { Building, Floor } from '../../../../models/property.models';
         <div class="container">
           <div class="header-content">
             <button class="btn-back" (click)="onBack()">← Dashboard</button>
+            <button class="btn-secondary" (click)="goToLeads()">📋 Manage Leads</button>
             <div class="title-section">
                <h1>Sales Mode</h1>
                <span class="location">{{ building?.name || 'Loading...' }}</span>
@@ -60,6 +61,16 @@ import { Building, Floor } from '../../../../models/property.models';
       cursor: pointer;
       &:hover { color: #fff; border-color: #fff; }
     }
+    .btn-secondary {
+      background: rgba(201, 162, 39, 0.1);
+      border: 1px solid rgba(201, 162, 39, 0.3);
+      color: #c9a227;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      &:hover { background: rgba(201, 162, 39, 0.2); }
+    }
     .title-section {
       h1 { margin: 0; font-size: 1.2rem; color: #c9a227; }
       .location { color: #fff; font-size: 1rem; }
@@ -82,42 +93,42 @@ import { Building, Floor } from '../../../../models/property.models';
     .loading, .error { color: #fff; text-align: center; padding: 2rem; }
   `]
 })
-export class AdminSalesBuildingPageComponent implements OnInit {
+export class SalesBuildingPageComponent implements OnInit {
   building: Building | null = null;
   isLoading = true;
-  buildingId = '';
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
+    private route: ActivatedRoute,
     private propertyService: PropertyService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.buildingId = params['buildingId'];
-      this.loadData();
+      const buildingId = params['buildingId'];
+      this.loadBuildingData(buildingId);
     });
   }
 
-  loadData() {
+  loadBuildingData(buildingId: string) {
     this.isLoading = true;
-    this.propertyService.getProject().subscribe(project => {
-      if (project) {
-        this.building = project.buildings.find(b => b.id === this.buildingId) || null;
-      }
-      if (this.building) {
-        this.isLoading = false;
-      }
+    this.propertyService.getBuilding(buildingId).subscribe(building => {
+      this.building = building || null;
+      this.isLoading = false;
     });
   }
 
   onFloorSelected(floor: Floor) {
-    // Navigate to the floor sales view we created earlier
-    this.router.navigate(['/admin/sales/buildings', this.buildingId, 'floor', floor.id]);
+    if (this.building) {
+      this.router.navigate(['/admin/sales/buildings', this.building.id, 'floor', floor.id]);
+    }
   }
 
   onBack() {
     this.router.navigate(['/admin']);
+  }
+
+  goToLeads() {
+    this.router.navigate(['/admin/sales/leads']);
   }
 }

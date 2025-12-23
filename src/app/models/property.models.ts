@@ -3,10 +3,14 @@
 export type UnitStatus = 'available' | 'sold';
 
 export interface SalesLead {
+  id?: string;
   name: string;
   phone: string;
   notes: string;
   interest: 'high' | 'medium' | 'low';
+  unitName?: string;
+  floorName?: string;
+  unitId?: string;
 }
 
 export interface Unit {
@@ -53,4 +57,5 @@ export interface Project {
   name: string;
   description: string;
   buildings: Building[];
+  leads?: SalesLead[];
 }

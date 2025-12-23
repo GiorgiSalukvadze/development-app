@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { Building, Floor, Unit, Project } from '../models/property.models';
+import { Building, Floor, Unit, Project, SalesLead } from '../models/property.models';
 
 export interface BuildingHotspot {
   id: string;
@@ -4056,8 +4056,21 @@ export class PropertyService {
   ): Observable<Unit | undefined> {
     if (this.useApi) {
       return this.http.patch<Unit>(`${this.apiUrl}/units/${unitId}`, changes, { headers: this.authHeaders, responseType: 'json' }).pipe(
-        tap(() => this.refreshProjectFromApi()),
-        catchError(() => of(undefined))
+        tap((res) => {
+          console.log('Unit updated successfully:', res);
+          this.refreshProjectFromApi();
+        }),
+        catchError((err) => {
+          console.error('Failed to update unit:', err);
+          if (err.status === 401) {
+            alert('Session expired. Please login again.');
+            localStorage.removeItem('admin-session-token');
+            window.location.reload();
+          } else {
+            alert(`Update failed: ${err.message}`);
+          }
+          return of(undefined);
+        })
       );
     }
     const project = JSON.parse(JSON.stringify(this.project$.value)) as Project;
@@ -4122,9 +4135,18 @@ export class PropertyService {
   }
 
   private refreshProjectFromApi(): void {
-    this.http.get<Project>(`${this.apiUrl}/project`, { responseType: 'json' })
-      .pipe(catchError(() => of(this.project$.value)))
+    const t = Date.now();
+    this.http.get<Project>(`${this.apiUrl}/project?t=${t}`, { responseType: 'json' })
+      .pipe(catchError((err) => {
+        console.error('CRITICAL: Failed to load project from API:', err);
+        return of(this.project$.value);
+      }))
       .subscribe(project => {
+        console.log('Project loaded from API:', project.id, 'Buildings:', project.buildings.length);
+        if (project.buildings.length > 0 && project.buildings[0].floors.length > 0) {
+          const units = project.buildings[0].floors[0].units.slice(0, 3);
+          console.log('Sample Unit Statuses:', units.map(u => `${u.id}:${u.status}`).join(', '));
+        }
         this.project$.next(project);
 
         // Refresh selected items if they exist
@@ -4179,11 +4201,60 @@ export class PropertyService {
 
 
 
+  getLeads(): Observable<SalesLead[]> {
+    if (!this.useApi) return of([]);
+    return this.http.get<SalesLead[]>(`${this.apiUrl}/leads`, { headers: this.authHeaders }).pipe(
+      catchError(error => {
+        console.error('Error fetching leads:', error);
+        return of([]);
+      })
+    );
+  }
+
+  addLead(lead: SalesLead): Observable<SalesLead> {
+    if (!this.useApi) return of(lead);
+    return this.http.post<SalesLead>(`${this.apiUrl}/leads`, lead, { headers: this.authHeaders }).pipe(
+      catchError(error => this.handleAuthError(error))
+    );
+  }
+
+  updateLead(lead: SalesLead): Observable<SalesLead> {
+    if (!this.useApi) return of(lead);
+    if (!lead.id) return of(lead);
+    return this.http.patch<SalesLead>(`${this.apiUrl}/leads/${lead.id}`, lead, { headers: this.authHeaders }).pipe(
+      catchError(error => this.handleAuthError(error))
+    );
+  }
+
+  deleteLead(id: string): Observable<any> {
+    if (!this.useApi) return of(true);
+    return this.http.delete(`${this.apiUrl}/leads/${id}`, { headers: this.authHeaders }).pipe(
+      catchError(error => this.handleAuthError(error))
+    );
+  }
+
+  private handleAuthError(error: any): Observable<never> {
+    if (error.status === 401) {
+      // Token expired
+      localStorage.removeItem('admin-session-token');
+      alert('Your session has expired. You will be redirected to login.');
+      window.location.href = '/admin'; // Force reload/redirect
+      return new Observable<never>(); // Stop stream
+    }
+    console.error('API Error:', error);
+    throw error; // Re-throw for component to handle if needed
+  }
+
   private refreshHotspots() {
     if (this.useApi) {
       this.http.get<BuildingHotspot[]>(`${this.apiUrl}/hotspots`)
-        .pipe(catchError(() => of([])))
-        .subscribe(hotspots => this.hotspotsSubject.next(hotspots));
+        .pipe(catchError((err) => {
+          console.error('Error fetching hotspots:', err);
+          return of([]);
+        }))
+        .subscribe(hotspots => {
+          this.hotspotsSubject.next(hotspots);
+        });
     }
   }
 
@@ -4196,11 +4267,18 @@ export class PropertyService {
     if (!this.useApi) {
       localStorage.setItem('app-hotspots', JSON.stringify(hotspots));
     } else {
+      console.log('Saving hotspots to server:', hotspots);
       this.http.post<BuildingHotspot[]>(`${this.apiUrl}/hotspots`, hotspots, { headers: this.authHeaders })
         .subscribe({
-          next: () => console.log('Hotspots saved successfully'),
+          next: (res) => console.log('Hotspots saved successfully. Server responded:', res),
           error: (err) => {
             console.error('Failed to save hotspots', err);
+            if (err.status === 401) {
+              alert('Session expired (server reset). Please log in again.');
+              localStorage.removeItem('admin-session-token');
+              window.location.reload();
+              return;
+            }
             alert(`Failed to save hotspots: ${err.message || 'Unknown error'}. Check console for details.`);
           }
         });

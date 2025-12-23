@@ -2,6 +2,7 @@
   "id": "project-1",
   "name": "Sunset Residences",
   "description": "Luxury apartments with stunning city views",
+  "leads": [],
   "buildings": [
     {
       "id": "building-1",

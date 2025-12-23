@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Floor, Unit } from '../../models/property.models';
 import { RouterLink } from '@angular/router';
@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './floor-view.component.html',
   styleUrl: './floor-view.component.scss'
 })
-export class FloorViewComponent implements OnInit {
+export class FloorViewComponent implements OnInit, OnChanges {
   @Input() floor!: Floor;
   @Input() showLeads = false;
   @Output() unitSelected = new EventEmitter<Unit>();
@@ -20,37 +20,38 @@ export class FloorViewComponent implements OnInit {
   tappedUnit: Unit | null = null;
   mousePosition: { x: number; y: number } = { x: 0, y: 0 };
 
+  displayedUnits: Unit[] = [];
+
   ngOnInit(): void {
-    // Clean up units on initialization
     this.cleanUpUnits();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['floor']) {
+      this.cleanUpUnits();
+    }
   }
 
   private cleanUpUnits(): void {
     if (!this.floor?.units) return;
 
-    // Remove units with invalid polygon data
-    this.floor.units = this.floor.units.filter(unit => {
+    // Filter units for DISPLAY ONLY - do not mutate the actual floor data!
+    this.displayedUnits = this.floor.units.filter(unit => {
       // Check if polygonPoints is valid
       if (!unit.polygonPoints || unit.polygonPoints.trim() === '') {
-        return false; // Remove units without polygon points
+        return false;
       }
-
-      // Check if polygonPoints has valid coordinates
       const points = unit.polygonPoints.split(' ').filter(p => p.trim() !== '');
-      if (points.length < 3) {
-        return false; // Remove units with less than 3 points (not a polygon)
-      }
+      if (points.length < 3) return false;
 
       // Check if coordinates are valid numbers
-      const isValid = points.every(point => {
+      return points.every(point => {
         const [x, y] = point.split(',').map(Number);
         return !isNaN(x) && !isNaN(y);
       });
-
-      return isValid;
     });
 
-    console.log(`Cleaned up units. Now have ${this.floor.units.length} valid units.`);
+    console.log(`[FloorView] Displaying ${this.displayedUnits.length} units. (Input floor had ${this.floor.units.length})`);
   }
 
   // Rest of your existing methods remain the same...
