@@ -270,4 +270,16 @@ button.ghost {
       transform: translateY(-1px);
     }
   }
+
+  .dashboard-btn {
+    margin-left: 1rem;
+    color: #3b82f6; // Blue to differentiate
+    border-color: rgba(59, 130, 246, 0.3);
+    background: rgba(59, 130, 246, 0.1);
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.2);
+      color: #3b82f6;
+    }
+  }
 }

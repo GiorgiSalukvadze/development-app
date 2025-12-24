@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { LayoutComponent } from '../../../../components/layout/layout.component';
 import { PropertyService } from '../../../../services/property.service';
 import { SalesLead } from '../../../../models/property.models';
+import { CsvExportService } from '../../../../services/csv-export.service';
 
 @Component({
     selector: 'app-leads-page',
@@ -30,9 +31,14 @@ import { SalesLead } from '../../../../models/property.models';
             <div class="search-box">
                 <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="filterLeads()" placeholder="Search leads...">
             </div>
-            <button class="btn-primary" (click)="toggleAddForm()">
-                {{ showAddForm ? 'Cancel' : '+ Add New Lead' }}
-            </button>
+            <div class="toolbar-actions">
+                <button class="btn-secondary" (click)="exportLeads()">
+                    ⬇ Export Excel
+                </button>
+                <button class="btn-primary" (click)="toggleAddForm()">
+                    {{ showAddForm ? 'Cancel' : '+ Add New Lead' }}
+                </button>
+            </div>
         </div>
 
         @if (showAddForm) {
@@ -44,8 +50,16 @@ import { SalesLead } from '../../../../models/property.models';
                         <input type="text" [(ngModel)]="newLead.name" placeholder="Name">
                     </div>
                     <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" [(ngModel)]="newLead.email" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
                         <label>Phone</label>
                         <input type="text" [(ngModel)]="newLead.phone" placeholder="Phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Next Call</label>
+                        <input type="date" [(ngModel)]="newLead.nextCallDate">
                     </div>
                     <div class="form-group">
                         <label>Check Interest</label>
@@ -78,9 +92,11 @@ import { SalesLead } from '../../../../models/property.models';
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Email</th>
                             <th>Unit</th>
                             <th>Floor</th>
                             <th>Phone</th>
+                            <th>Next Call</th>
                             <th>Interest</th>
                             <th>Notes</th>
                             <th>Actions</th>
@@ -90,12 +106,14 @@ import { SalesLead } from '../../../../models/property.models';
                         @for (lead of filteredLeads; track lead.id) {
                             <tr>
                                 <td class="name-cell">{{ lead.name }}</td>
+                                <td>{{ lead.email || '-' }}</td>
                                 <td>
                                     <span *ngIf="lead.unitName" class="unit-badge">{{ lead.unitName }}</span>
                                     <span *ngIf="!lead.unitName" class="global-badge">Global</span>
                                 </td>
                                 <td>{{ lead.floorName || '-' }}</td>
                                 <td>{{ lead.phone }}</td>
+                                <td>{{ lead.nextCallDate || '-' }}</td>
                                 <td>
                                     <span class="badge" [class]="lead.interest">{{ lead.interest | titlecase }}</span>
                                 </td>
@@ -151,6 +169,22 @@ import { SalesLead } from '../../../../models/property.models';
         &:focus { outline: none; border-color: #c9a227; }
     }
 
+    .toolbar-actions {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .btn-secondary {
+        background: #334155;
+        color: #fff;
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover { background: #475569; }
+    }
+
     .btn-primary {
         background: #c9a227;
         color: #000;
@@ -166,8 +200,11 @@ import { SalesLead } from '../../../../models/property.models';
         background: #1e293b;
         border-radius: 12px;
         border: 1px solid rgba(255,255,255,0.05);
-        overflow: hidden;
+        overflow: auto;
         margin-bottom: 2rem;
+    }
+    .table-card {
+        max-height: 100vh;
     }
 
     .add-form-card { padding: 1.5rem; }
@@ -219,8 +256,9 @@ import { SalesLead } from '../../../../models/property.models';
     }
     
     .leads-table td {
-        padding: 1rem;
+        padding: 0.5rem 0.75rem; /* Reduced padding */
         border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-size: 0.9rem; /* Reduced font size */
     }
 
     .name-cell { font-weight: 600; color: #fff; }
@@ -285,14 +323,18 @@ export class LeadsPageComponent implements OnInit {
 
     newLead: SalesLead = {
         name: '',
+        email: '',
         phone: '',
         notes: '',
+        firstCallDate: '',
+        nextCallDate: '',
         interest: 'medium'
     };
 
     constructor(
         private propertyService: PropertyService,
-        private router: Router
+        private router: Router,
+        private csvExportService: CsvExportService
     ) { }
 
     ngOnInit() {
@@ -317,7 +359,10 @@ export class LeadsPageComponent implements OnInit {
         this.filteredLeads = this.leads.filter(l =>
             l.name.toLowerCase().includes(term) ||
             l.phone.includes(term) ||
-            l.notes?.toLowerCase().includes(term)
+            l.notes?.toLowerCase().includes(term) ||
+            (l.email && l.email.toLowerCase().includes(term)) ||
+            (l.unitName && l.unitName.toLowerCase().includes(term)) ||
+            (l.nextCallDate && l.nextCallDate.includes(term))
         );
     }
 
@@ -356,7 +401,35 @@ export class LeadsPageComponent implements OnInit {
     resetForm() {
         this.showAddForm = false;
         this.editingId = null;
-        this.newLead = { name: '', phone: '', notes: '', interest: 'medium' };
+        this.newLead = {
+            name: '',
+            email: '',
+            phone: '',
+            notes: '',
+            nextCallDate: '',
+            interest: 'medium'
+        };
+    }
+
+    exportLeads() {
+        if (!this.filteredLeads || this.filteredLeads.length === 0) {
+            alert('No leads to export.');
+            return;
+        }
+
+        const exportData = this.filteredLeads.map(lead => ({
+            Name: lead.name,
+            Email: lead.email || '',
+            Phone: lead.phone,
+            Unit: lead.unitName || 'Global',
+            Floor: lead.floorName || '',
+            'Next Call': lead.nextCallDate || '',
+            Interest: lead.interest,
+            Notes: lead.notes || ''
+        }));
+
+        const dateStr = new Date().toISOString().slice(0, 10);
+        this.csvExportService.downloadFile(exportData, `Sales_Leads_${dateStr}`);
     }
 
     toggleAddForm() {

@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { Unit, SalesLead } from '../../../../models/property.models';
 
 @Component({
-    selector: 'app-sales-lead-modal',
-    standalone: true,
-    imports: [CommonModule, FormsModule],
-    template: `
+  selector: 'app-sales-lead-modal',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  template: `
     <div class="modal-backdrop" (click)="close.emit()">
       <div class="modal-content" (click)="$event.stopPropagation()">
 
@@ -27,10 +27,22 @@ import { Unit, SalesLead } from '../../../../models/property.models';
             <label>Customer Name</label>
             <input type="text" [(ngModel)]="newLead.name" placeholder="John Doe" class="form-input">
           </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" [(ngModel)]="newLead.email" placeholder="john@example.com" class="form-input">
+          </div>
           
           <div class="form-group">
             <label>Phone Number</label>
             <input type="tel" [(ngModel)]="newLead.phone" placeholder="+1 234 567 8900" class="form-input">
+          </div>
+
+          <div class="form-group-row">
+            <div class="form-group">
+                <label>Next Call</label>
+                <input type="date" [(ngModel)]="newLead.nextCallDate" class="form-input">
+            </div>
           </div>
           
           <div class="form-group">
@@ -80,7 +92,13 @@ import { Unit, SalesLead } from '../../../../models/property.models';
                                     <button class="btn-delete" (click)="onDeleteLead(i)" title="Delete Lead">×</button>
                                 </div>
                             </div>
-                            <div class="lead-phone">{{ lead.phone }}</div>
+                            <div class="lead-details">
+                                <span class="lead-email" *ngIf="lead.email">{{ lead.email }}</span>
+                                <span class="lead-phone">{{ lead.phone }}</span>
+                            </div>
+                            <div class="lead-dates" *ngIf="lead.nextCallDate">
+                                📅 Next Call: {{ lead.nextCallDate }}
+                            </div>
                             <div class="lead-notes" *ngIf="lead.notes">{{ lead.notes }}</div>
                         </div>
                     }
@@ -103,7 +121,7 @@ import { Unit, SalesLead } from '../../../../models/property.models';
       </div>
     </div>
   `,
-    styles: [`
+  styles: [`
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -433,6 +451,31 @@ import { Unit, SalesLead } from '../../../../models/property.models';
       &:hover { background: rgba(34, 197, 94, 0.2); border-color: #22c55e; }
     }
 
+    .lead-details {
+        display: flex;
+        gap: 1rem;
+        color: #94a3b8;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    .lead-email { color: #3b82f6; }
+
+    .form-group-row {
+        display: flex;
+        gap: 1rem;
+        .form-group { flex: 1; }
+    }
+    
+    .lead-dates {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        color: #e2e8f0;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+    }
+
     @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
@@ -445,47 +488,50 @@ import { Unit, SalesLead } from '../../../../models/property.models';
   `]
 })
 export class AdminSalesLeadModalComponent implements OnInit {
-    @Input() unit!: Unit;
-    @Output() close = new EventEmitter<void>();
-    @Output() save = new EventEmitter<SalesLead[]>(); // Continues to emit array
-    @Output() markAsSold = new EventEmitter<void>();
-    @Output() markAsAvailable = new EventEmitter<void>();
+  @Input() unit!: Unit;
+  @Output() close = new EventEmitter<void>();
+  @Output() save = new EventEmitter<SalesLead[]>(); // Continues to emit array
+  @Output() markAsSold = new EventEmitter<void>();
+  @Output() markAsAvailable = new EventEmitter<void>();
 
-    activeTab: 'add' | 'view' = 'add';
-    isSaving = false;
+  activeTab: 'add' | 'view' = 'add';
+  isSaving = false;
 
-    onDeleteLead(index: number) {
-        if (!this.unit.salesLeads) return;
-        const currentLeads = [...this.unit.salesLeads];
-        currentLeads.splice(index, 1);
-        this.save.emit(currentLeads);
+  onDeleteLead(index: number) {
+    if (!this.unit.salesLeads) return;
+    const currentLeads = [...this.unit.salesLeads];
+    currentLeads.splice(index, 1);
+    this.save.emit(currentLeads);
+  }
+
+  newLead: SalesLead = {
+    name: '',
+    email: '',
+    phone: '',
+    notes: '',
+    firstCallDate: '',
+    nextCallDate: '',
+    interest: 'medium'
+  };
+
+  ngOnInit() {
+    // If we have leads, default to viewing them? Or stick to adding?
+    // Let's stick to 'add' as default for quick entry, user can switch to view.
+    if (this.unit.salesLeads && this.unit.salesLeads.length > 0) {
+      // Optional: logic to decide default tab
     }
+  }
 
-    newLead: SalesLead = {
-        name: '',
-        phone: '',
-        notes: '',
-        interest: 'medium'
-    };
+  onSave() {
+    if (this.isSaving) return;
+    this.isSaving = true;
 
-    ngOnInit() {
-        // If we have leads, default to viewing them? Or stick to adding?
-        // Let's stick to 'add' as default for quick entry, user can switch to view.
-        if (this.unit.salesLeads && this.unit.salesLeads.length > 0) {
-            // Optional: logic to decide default tab
-        }
-    }
+    // Create a copy of existing leads or empty array
+    const currentLeads = this.unit.salesLeads ? [...this.unit.salesLeads] : [];
+    // Add new lead
+    currentLeads.push({ ...this.newLead });
 
-    onSave() {
-        if (this.isSaving) return;
-        this.isSaving = true;
-
-        // Create a copy of existing leads or empty array
-        const currentLeads = this.unit.salesLeads ? [...this.unit.salesLeads] : [];
-        // Add new lead
-        currentLeads.push({ ...this.newLead });
-
-        // Emit the full updated array
-        this.save.emit(currentLeads);
-    }
+    // Emit the full updated array
+    this.save.emit(currentLeads);
+  }
 }

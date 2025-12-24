@@ -125,7 +125,7 @@ export class SalesBuildingPageComponent implements OnInit {
   }
 
   onBack() {
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin/sales/dashboard']);
   }
 
   goToLeads() {

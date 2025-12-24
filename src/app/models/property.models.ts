@@ -5,8 +5,11 @@ export type UnitStatus = 'available' | 'sold';
 export interface SalesLead {
   id?: string;
   name: string;
+  email?: string;
   phone: string;
   notes: string;
+  firstCallDate?: string;
+  nextCallDate?: string;
   interest: 'high' | 'medium' | 'low';
   unitName?: string;
   floorName?: string;
