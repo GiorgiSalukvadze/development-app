@@ -24,7 +24,7 @@ export class FloorPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private propertyService: PropertyService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -36,7 +36,7 @@ export class FloorPageComponent implements OnInit {
 
   private loadFloorData(buildingId: string, floorId: string): void {
     this.isLoading = true;
-    
+
     this.propertyService.getBuilding(buildingId).subscribe(building => {
       if (building) {
         this.building = building;
@@ -58,8 +58,9 @@ export class FloorPageComponent implements OnInit {
   }
 
   onUnitSelected(unit: Unit): void {
-      if (unit.status.toLowerCase().trim() !== 'sold'){
-        this.selectedUnit = unit;}
+    if (unit.status.toLowerCase().trim() !== 'sold') {
+      this.selectedUnit = unit;
+    }
   }
 
   onBackToBuilding(): void {
@@ -70,9 +71,5 @@ export class FloorPageComponent implements OnInit {
     this.selectedUnit = null;
   }
 
-  onRequestInfo(unit: Unit): void {
-    console.log('Request info for unit:', unit);
-    alert(`Thank you for your interest in ${unit.name}! Our sales team will contact you shortly.`);
-    this.selectedUnit = null;
-  }
+
 }

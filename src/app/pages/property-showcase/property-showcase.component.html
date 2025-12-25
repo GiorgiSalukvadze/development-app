@@ -28,8 +28,9 @@
   @if (selectedUnit) {
     <app-unit-modal
       [unit]="selectedUnit"
+      [buildingName]="currentBuilding?.name"
+      [floorName]="'Interactive View'"
       (close)="onCloseModal()"
-      (requestInfo)="onRequestInfo($event)"
     />
   }
 

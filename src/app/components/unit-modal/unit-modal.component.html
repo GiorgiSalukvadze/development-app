@@ -226,48 +226,37 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="action-buttons">
-          <button class="btn-primary" (click)="onRequestInfo()">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-              ></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-            Request Info
-          </button>
-          <button
-            class="btn-secondary"
-            [class.btn-disabled]="unit.status === 'sold'"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"
-              ></path>
-              <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
-            </svg>
-            Schedule Tour
-          </button>
+        <!-- Action Buttons / Form -->
+        <div class="action-section">
+            <div class="action-buttons" *ngIf="!showForm">
+                <button class="btn-primary" (click)="onToggleForm()" [disabled]="unit.status === 'sold'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    Contact Us
+                </button>
+            </div>
+
+            <!-- Public Lead Form -->
+            <div class="lead-form" *ngIf="showForm">
+                <h3>Leave your information</h3>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="lead.name" placeholder="Your Name *" class="public-input">
+                </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="lead.phone" placeholder="Phone Number *" class="public-input">
+                </div>
+                <div class="form-group">
+                    <input type="email" [(ngModel)]="lead.email" placeholder="Email Address" class="public-input">
+                </div>
+                <div class="form-group">
+                    <textarea [(ngModel)]="lead.notes" placeholder="I'm interested in this unit..." rows="2" class="public-input"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button class="btn-cancel" (click)="onToggleForm()">Cancel</button>
+                    <button class="btn-submit" (click)="onSubmitLead()" [disabled]="isSubmitting">
+                        {{ isSubmitting ? 'Sending...' : 'Send Request' }}
+                    </button>
+                </div>
+            </div>
         </div>
 
         <!-- Contact Info -->

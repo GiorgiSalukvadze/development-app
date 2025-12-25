@@ -21,13 +21,13 @@ export class PropertyShowcaseComponent implements OnInit {
   project: Project | null = null;
   currentBuilding: Building | null = null;
   selectedUnit: Unit | null = null;
-  
+
   isLoading = true;
 
   constructor(
     private propertyService: PropertyService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadProject();
@@ -65,9 +65,5 @@ export class PropertyShowcaseComponent implements OnInit {
     this.selectedUnit = null;
   }
 
-  onRequestInfo(unit: Unit): void {
-    console.log('Request info for unit:', unit);
-    alert(`Thank you for your interest in ${unit.name}! Our sales team will contact you shortly.`);
-    this.selectedUnit = null;
-  }
+
 }

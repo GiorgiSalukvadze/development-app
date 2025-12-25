@@ -50,8 +50,9 @@
   @if (selectedUnit) {
     <app-unit-modal
       [unit]="selectedUnit"
-      (close)="onCloseModal()"
-      (requestInfo)="onRequestInfo($event)">
+      [buildingName]="building?.name"
+      [floorName]="floor?.name"
+      (close)="onCloseModal()">
     </app-unit-modal>
   }
 </app-layout>
